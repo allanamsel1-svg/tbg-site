@@ -235,10 +235,10 @@
 <section class="stats">
   <div class="wrap">
     <div class="grid">
-      <div class="stat"><div class="num">70</div><div class="desc">Product categories</div></div>
-      <div class="stat"><div class="num">200</div><div class="desc">Sub-categories</div></div>
-      <div class="stat"><div class="num">112</div><div class="desc">Brands &amp; programs managed</div></div>
-      <div class="stat"><div class="num"><em>100%</em></div><div class="desc">Tested &amp; documented to standard</div></div>
+      <div class="stat"><div class="num" data-count="70">0</div><div class="desc">Product categories</div></div>
+      <div class="stat"><div class="num" data-count="200">0</div><div class="desc">Sub-categories</div></div>
+      <div class="stat"><div class="num" data-count="112">0</div><div class="desc">Brands &amp; programs managed</div></div>
+      <div class="stat"><div class="num"><em><span data-count="100">0</span>%</em></div><div class="desc">Tested &amp; documented to standard</div></div>
     </div>
   </div>
 </section>
@@ -358,6 +358,28 @@
 <script>
   const nav = document.getElementById('nav');
   addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 60));
+
+  // Count-up animation when stats scroll into view
+  function animateCount(el){
+    const target = parseInt(el.dataset.count, 10);
+    const dur = 1600;
+    const start = performance.now();
+    function tick(now){
+      const p = Math.min((now - start) / dur, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(eased * target);
+      if (p < 1) requestAnimationFrame(tick);
+      else el.textContent = target;
+    }
+    requestAnimationFrame(tick);
+  }
+  const counters = document.querySelectorAll('[data-count]');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting){ animateCount(e.target); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(c => io.observe(c));
 
   // Certification list (used in hero marquee + quality cert marquee)
   const certs = [
