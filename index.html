@@ -187,6 +187,42 @@
 </head>
 <body>
 
+<!-- PASSWORD GATE (pre-launch, simple client-side) -->
+<div id="gate" style="position:fixed;inset:0;z-index:9999;background:#211d18;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Manrope',sans-serif;">
+  <div style="font-family:'Archivo',sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:-.02em;line-height:.9;font-size:1.6rem;color:#fff;text-align:center;margin-bottom:34px;">
+    Tomorrow<br>Brand<span style="color:#ecdcc4;">.</span>Group
+  </div>
+  <input id="gatePw" type="password" placeholder="Enter password" autocomplete="off"
+    style="background:transparent;border:1px solid rgba(255,255,255,.3);color:#fff;padding:14px 20px;border-radius:100px;font-size:1rem;width:260px;text-align:center;outline:none;font-family:'Manrope',sans-serif;">
+  <button id="gateBtn"
+    style="margin-top:16px;background:#fff;color:#211d18;border:none;padding:13px 34px;border-radius:100px;font-family:'Archivo',sans-serif;font-weight:600;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;">
+    Enter
+  </button>
+  <div id="gateErr" style="color:#e0a89a;font-size:.82rem;margin-top:16px;height:1em;"></div>
+</div>
+<script>
+  (function(){
+    var PASSWORD = "tbg2026"; // change this to whatever you want
+    var gate = document.getElementById('gate');
+    var pw = document.getElementById('gatePw');
+    var btn = document.getElementById('gateBtn');
+    var err = document.getElementById('gateErr');
+    if (sessionStorage.getItem('tbg_ok') === '1') { gate.style.display = 'none'; }
+    function tryUnlock(){
+      if (pw.value === PASSWORD){
+        sessionStorage.setItem('tbg_ok','1');
+        gate.style.display = 'none';
+      } else {
+        err.textContent = 'Incorrect password';
+        pw.value = '';
+      }
+    }
+    btn.addEventListener('click', tryUnlock);
+    pw.addEventListener('keydown', function(e){ if(e.key === 'Enter') tryUnlock(); });
+    pw.focus();
+  })();
+</script>
+
 <nav id="nav">
   <div class="logo-mini">Tomorrow<br>Brand<span>.</span>Group</div>
   <div class="nav-links">
