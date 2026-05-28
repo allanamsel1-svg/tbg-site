@@ -83,6 +83,7 @@
   .hero-marquee:hover .marquee-track { animation-play-state:paused; }
   .m-item { display:flex; align-items:center; gap:12px; padding:0 36px; color:rgba(255,255,255,.82); white-space:nowrap; font-family:'Archivo',sans-serif; font-weight:600; font-size:.82rem; letter-spacing:.16em; text-transform:uppercase; }
   .m-item .di { width:5px; height:5px; border-radius:50%; background:var(--cream); }
+  .m-item svg { width:36px; height:36px; flex-shrink:0; }
   @keyframes scrollL { from{ transform:translateX(0);} to{ transform:translateX(-50%);} }
   @keyframes scrollR { from{ transform:translateX(-50%);} to{ transform:translateX(0);} }
 
@@ -100,6 +101,16 @@
   .pillar p { color: var(--ink-soft); font-size: 1.02rem; }
   .pillar .tag { display:inline-block; margin-top:22px; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); border-top:1px solid var(--line); padding-top:16px; font-family:'Archivo',sans-serif; }
   @media (max-width: 820px){ .pillars { grid-template-columns:1fr; } }
+
+  /* OUR BRANDS */
+  .brands-section { overflow:hidden; padding-bottom:140px; }
+  .brand-mq { width:100%; overflow:hidden; -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent); mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent); }
+  .brand-track { display:flex; width:max-content; animation:scrollL 60s linear infinite; padding:10px 0; }
+  .brand-mq:hover .brand-track { animation-play-state:paused; }
+  .brand-card { flex-shrink:0; margin:0 12px; width:200px; height:200px; border-radius:8px; display:flex; align-items:center; justify-content:center; padding:20px; transition: transform .35s ease, box-shadow .35s ease; cursor:pointer; text-decoration:none; overflow:hidden; }
+  .brand-card:hover { transform:translateY(-4px); box-shadow:0 14px 40px rgba(33,29,24,.15); }
+  .brand-card img { max-width:100%; max-height:100%; object-fit:contain; display:block; }
+  .brand-card svg { width:100%; height:100%; }
 
   /* STATS */
   .stats { background: var(--ink); color: #fff; }
@@ -134,10 +145,8 @@
   .qm:hover .qm-track { animation-play-state:paused; }
   .test-chip { display:inline-flex; align-items:center; gap:9px; margin:0 7px; background:var(--card); border:1px solid var(--line); border-radius:100px; padding:12px 22px; font-size:.9rem; white-space:nowrap; }
   .test-chip .dot { width:6px; height:6px; border-radius:50%; background:var(--accent); flex-shrink:0; }
-  .cert-chip { display:inline-flex; align-items:center; gap:10px; margin:0 7px; background:var(--ink); color:#fff; border-radius:6px; padding:14px 26px; white-space:nowrap; }
-  .cert-chip .ci { font-family:'Playfair Display',serif; font-style:italic; font-size:1.2rem; color:var(--cream); }
-  .cert-chip .ct { font-family:'Archivo',sans-serif; font-weight:600; font-size:.82rem; letter-spacing:.1em; text-transform:uppercase; line-height:1.1; }
-  .cert-chip .ct small { display:block; font-weight:400; font-size:.62rem; letter-spacing:.14em; color:rgba(255,255,255,.55); margin-top:3px; }
+  .cert-logo { display:inline-flex; align-items:center; justify-content:center; margin:0 22px; color:var(--ink); }
+  .cert-logo svg { width:72px; height:72px; }
   .qnote { margin-top:18px; font-size:.8rem; color:var(--accent-deep); font-style:italic; }
 
   /* PROCESS */
@@ -182,7 +191,7 @@
 <nav id="nav">
   <div class="logo-mini">Tomorrow<br>Brand<span>.</span>Group</div>
   <div class="nav-links">
-    <a href="#brands">Brands</a>
+    <a href="#our-brands">Our Brands</a>
     <a href="#pl">Private Label</a>
     <a href="#quality">Quality</a>
     <a href="#process">How We Work</a>
@@ -219,15 +228,26 @@
         <div class="pnum">01</div>
         <h3>In-House Brands</h3>
         <p>We own and operate our own portfolio of beauty and HBA brands — from formulation and packaging through testing, certification, and retail delivery. Brands we stand behind, end to end.</p>
-        <span class="tag">[ Placeholder — name &amp; show owned brands ]</span>
       </div>
       <div class="pillar" id="pl">
         <div class="pnum">02</div>
         <h3>Private Label Programs</h3>
         <p>We design and manufacture private label programs for retail partners across beauty and HBA — multi-SKU lines built to spec, at national and regional retail scale. Programs are confidential; we let capability speak.</p>
-        <span class="tag">Programs under NDA · capability, not names</span>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- OUR BRANDS -->
+<section class="brands-section" id="our-brands">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label">Our House</div>
+      <h2>The brands we build &amp; operate.</h2>
+    </div>
+  </div>
+  <div class="brand-mq">
+    <div class="brand-track" id="brandTrack"></div>
   </div>
 </section>
 
@@ -257,7 +277,7 @@
       <div class="cat"><div class="ci">04</div><h3>Wellness</h3><p>Supplements &amp; ingestibles.</p></div>
       <div class="cat"><div class="ci">05</div><h3>Household &amp; PC</h3><p>Everyday essentials.</p></div>
       <div class="cat"><div class="ci">06</div><h3>Accessories &amp; Tools</h3><p>Applicators &amp; devices.</p></div>
-      <div class="cat"><div class="ci">07</div><h3>Consumer Electronics</h3><p>Six sub-categories.</p></div>
+      <div class="cat"><div class="ci">07</div><h3>Oral Care</h3><p>Toothpaste, rinses &amp; tools.</p></div>
       <div class="cat" style="background:var(--paper-2);"><div class="ci" style="color:var(--ink-soft);">+</div><h3 style="font-size:1.05rem; color:var(--ink-soft);">Expanding</h3><p>New categories in build.</p></div>
     </div>
   </div>
@@ -381,21 +401,33 @@
   }, { threshold: 0.5 });
   counters.forEach(c => io.observe(c));
 
-  // Certification list (used in hero marquee + quality cert marquee)
+  // Certification logos (monochrome SVG renditions)
   const certs = [
-    ["Certified Vegan","Plant-based formulas"],
-    ["Cruelty-Free","No animal testing"],
-    ["Leaping Bunny","Program standard"],
-    ["GMP","Good manufacturing practice"],
-    ["FDA Compliant","US regulatory"],
-    ["CA Prop 65","Compliance reviewed"],
-    ["ISO 22716","Cosmetics GMP"],
-    ["Dermatologist Tested","Skin safety"],
-    ["Clinically Tested","Efficacy backed"],
-    ["Paraben-Free","Clean formulation"],
-    ["Sulfate-Free","Gentle base"],
-    ["Gluten-Free","Allergen conscious"],
-    ["Recyclable Packaging","Sustainability"]
+    {name:"Leaping Bunny", svg:`<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="46" stroke="currentColor" stroke-width="2" fill="none"/><path d="M30 62 q-3 -4 0 -8 q3 -3 8 -2 q2 -8 8 -12 q-2 -6 1 -10 q3 -3 5 0 q1 -4 4 -4 q3 0 3 4 q5 -1 7 4 q2 5 -2 9 q5 2 7 7 q2 5 -1 9 q4 4 1 8 q-3 4 -8 3 l-3 5 q-2 3 -5 1 l-25 0 q-3 1 -5 -1 q-2 -3 0 -5 z" fill="currentColor"/><path d="M22 28 l1.5 3 l3 .5 l-2.2 2 l.6 3 l-2.7 -1.5 l-2.7 1.5 l.6 -3 l-2.2 -2 l3 -.5 z" fill="currentColor"/><path d="M78 26 l1 2 l2.2 .3 l-1.6 1.5 l.4 2.2 l-2 -1.1 l-2 1.1 l.4 -2.2 l-1.6 -1.5 l2.2 -.3 z" fill="currentColor"/><path d="M82 70 l1 2 l2.2 .3 l-1.6 1.5 l.4 2.2 l-2 -1.1 l-2 1.1 l.4 -2.2 l-1.6 -1.5 l2.2 -.3 z" fill="currentColor"/></svg>`},
+    {name:"Certified Vegan", svg:`<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="46" stroke="currentColor" stroke-width="2" fill="none"/><g fill="currentColor"><ellipse cx="50" cy="22" rx="4" ry="9"/><ellipse cx="50" cy="78" rx="4" ry="9"/><ellipse cx="22" cy="50" rx="9" ry="4"/><ellipse cx="78" cy="50" rx="9" ry="4"/><ellipse cx="30" cy="30" rx="4" ry="9" transform="rotate(-45 30 30)"/><ellipse cx="70" cy="30" rx="4" ry="9" transform="rotate(45 70 30)"/><ellipse cx="30" cy="70" rx="4" ry="9" transform="rotate(45 30 70)"/><ellipse cx="70" cy="70" rx="4" ry="9" transform="rotate(-45 70 70)"/></g><circle cx="50" cy="50" r="16" fill="currentColor"/><path d="M42 44 L50 60 L58 44" stroke="#f4efe7" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`},
+    {name:"GMP Certified", svg:`<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="44" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="50" cy="50" r="36" stroke="currentColor" stroke-width="1" fill="none"/><g stroke="currentColor" stroke-width="1.2"><line x1="50" y1="14" x2="50" y2="20"/><line x1="50" y1="80" x2="50" y2="86"/><line x1="14" y1="50" x2="20" y2="50"/><line x1="80" y1="50" x2="86" y2="50"/><line x1="24" y1="24" x2="28" y2="28"/><line x1="72" y1="72" x2="76" y2="76"/><line x1="76" y1="24" x2="72" y2="28"/><line x1="28" y1="72" x2="24" y2="76"/></g><text x="50" y="48" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="700" font-size="18" fill="currentColor">GMP</text><text x="50" y="62" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="500" font-size="6" letter-spacing="1.5" fill="currentColor">CERTIFIED</text></svg>`},
+    {name:"ISO 22716", svg:`<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M50 8 L86 20 L86 50 Q86 78 50 92 Q14 78 14 50 L14 20 Z" stroke="currentColor" stroke-width="2" fill="none"/><text x="50" y="44" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="700" font-size="14" fill="currentColor">ISO</text><text x="50" y="62" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="600" font-size="11" fill="currentColor">22716</text><line x1="28" y1="70" x2="72" y2="70" stroke="currentColor" stroke-width="1"/><text x="50" y="80" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="500" font-size="5" letter-spacing="1.2" fill="currentColor">COSMETICS GMP</text></svg>`},
+    {name:"USDA Organic", svg:`<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="46" stroke="currentColor" stroke-width="2" fill="none"/><path d="M50 18 Q22 36 26 70 L74 70 Q78 36 50 18 Z" fill="currentColor"/><text x="50" y="42" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="800" font-size="11" fill="#f4efe7">USDA</text><text x="50" y="60" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="700" font-size="9" fill="#f4efe7">ORGANIC</text><line x1="32" y1="78" x2="68" y2="78" stroke="currentColor" stroke-width="2"/><line x1="36" y1="83" x2="64" y2="83" stroke="currentColor" stroke-width="1.2"/></svg>`},
+    {name:"NSF Certified", svg:`<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="44" fill="currentColor"/><text x="50" y="62" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="800" font-size="34" fill="#f4efe7" letter-spacing="-1">NSF</text></svg>`},
+    {name:"EWG Verified", svg:`<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="8" width="84" height="84" rx="14" stroke="currentColor" stroke-width="2" fill="none"/><text x="50" y="42" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="800" font-size="18" fill="currentColor" letter-spacing="-.5">EWG</text><line x1="22" y1="50" x2="78" y2="50" stroke="currentColor" stroke-width="1"/><text x="50" y="68" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="600" font-size="9" letter-spacing="1.5" fill="currentColor">VERIFIED</text><path d="M44 78 L48 82 L56 74" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`},
+    {name:"COSMOS Organic", svg:`<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="46" stroke="currentColor" stroke-width="2" fill="none"/><path d="M50 24 Q66 34 64 52 Q62 70 50 76 Q38 70 36 52 Q34 34 50 24 Z" fill="currentColor"/><line x1="50" y1="30" x2="50" y2="74" stroke="#f4efe7" stroke-width="1.4"/><text x="50" y="92" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="700" font-size="7" letter-spacing="1.5" fill="currentColor">COSMOS</text></svg>`},
+    {name:"Ecocert", svg:`<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="44" stroke="currentColor" stroke-width="2" fill="none"/><text x="50" y="42" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="800" font-size="13" fill="currentColor" letter-spacing="-.3">ECOCERT</text><line x1="26" y1="48" x2="74" y2="48" stroke="currentColor" stroke-width=".8"/><text x="50" y="60" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="500" font-size="6" letter-spacing="1.4" fill="currentColor">NATURAL &amp;</text><text x="50" y="69" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="500" font-size="6" letter-spacing="1.4" fill="currentColor">ORGANIC</text><path d="M44 76 q6 -3 12 0 q-6 3 -12 0 z" fill="currentColor"/></svg>`},
+    {name:"Cruelty Free Int'l", svg:`<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="46" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width=".7" fill="none"/><path d="M40 60 q-2 -10 4 -14 q-3 -6 -1 -10 q2 -3 4 -1 q1 -2 3 -2 q2 0 3 2 q2 -2 4 1 q2 4 -1 10 q6 4 4 14 q-2 6 -10 6 q-8 0 -10 -6 z" fill="currentColor"/><circle cx="46" cy="56" r="1.2" fill="#f4efe7"/><circle cx="54" cy="56" r="1.2" fill="#f4efe7"/><text x="50" y="84" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="700" font-size="6" letter-spacing="1.4" fill="currentColor">CRUELTY FREE</text></svg>`},
+    {name:"B Corp", svg:`<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="44" fill="currentColor"/><line x1="38" y1="26" x2="62" y2="26" stroke="#f4efe7" stroke-width="2"/><text x="50" y="72" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="800" font-size="40" fill="#f4efe7">B</text><text x="50" y="86" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="600" font-size="5" letter-spacing="1.5" fill="#f4efe7">CORPORATION</text></svg>`}
+  ];
+
+  // In-house brands (real logos from /images folder)
+  const brands = [
+    {name:"Veloura", bg:"#ffffff", img:"images/veloura.png"},
+    {name:"Beauty Bar", bg:"#ffffff", img:"images/beautybar.png"},
+    {name:"Rovan", bg:"#0d0d0d", img:"images/rovan.png"},
+    {name:"Silque", bg:"#1a2332", img:"images/slique.png"},
+    {name:"Lumora", bg:"#0f3a5f", img:"images/lumora.png"},
+    {name:"Auréa", bg:"#1f3024", img:"images/aurea.png"},
+    {name:"Cotelle", bg:"#c97b66", img:"images/cotelle.png"},
+    {name:"Cottana", bg:"#f5f1e8", img:"images/cottana.png"},
+    {name:"Masquerade NYC", bg:"#0a0a0a", img:"images/masqueradenyc.png"},
+    {name:"Liptastique Paris", bg:"#fbfaf8", img:"images/liptastiqueparis.png"}
   ];
 
   // Test protocols (quality test marquee)
@@ -407,27 +439,34 @@
     "RIPT (Repeat Insult Patch)","Ophthalmologist Tested"
   ];
 
-  function heroChip(c){
-    return `<span class="m-item"><span class="di"></span>${c[0]}</span>`;
+  function heroLogo(c){
+    return `<span class="m-item" style="color:#fff;">${c.svg}<span style="margin-left:14px;">${c.name}</span></span>`;
   }
   function testChip(t){
     return `<span class="test-chip"><span class="dot"></span>${t}</span>`;
   }
-  function certChip(c){
-    return `<span class="cert-chip"><span class="ci">&#10003;</span><span class="ct">${c[0]}<small>${c[1]}</small></span></span>`;
+  function certLogo(c){
+    return `<span class="cert-logo">${c.svg}</span>`;
+  }
+  function brandCard(b){
+    return `<a href="#" class="brand-card" style="background:${b.bg};" aria-label="${b.name}"><img src="${b.img}" alt="${b.name}" loading="lazy"></a>`;
   }
 
-  // Hero marquee = certifications, duplicated for seamless loop
+  // Hero marquee = cert logos with names
   document.getElementById('heroTrack').innerHTML =
-    (certs.map(heroChip).join('')).repeat(2);
+    (certs.map(heroLogo).join('')).repeat(2);
 
-  // Quality test marquee, duplicated
+  // Quality test marquee
   document.getElementById('testTrack').innerHTML =
     (tests.map(testChip).join('')).repeat(2);
 
-  // Quality cert marquee, duplicated
+  // Quality cert marquee (logos only)
   document.getElementById('certTrack').innerHTML =
-    (certs.map(certChip).join('')).repeat(2);
+    (certs.map(certLogo).join('')).repeat(2);
+
+  // Brand marquee
+  document.getElementById('brandTrack').innerHTML =
+    (brands.map(brandCard).join('')).repeat(2);
 </script>
 </body>
 </html>
