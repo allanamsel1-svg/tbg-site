@@ -538,7 +538,7 @@
   function brandCard(b){
     const slug = b.name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-$/,'');
     const blend = b.blend ? 'style="mix-blend-mode:multiply;"' : '';
-    return `<a href="brands/${slug}.html" class="brand-card" style="background:${b.bg};" aria-label="${b.name}"><img src="${b.img}" alt="${b.name}" loading="lazy" ${blend}></a>`;
+    return `<a href="${slug}.html" class="brand-card" style="background:${b.bg};" aria-label="${b.name}"><img src="${b.img}" alt="${b.name}" loading="lazy" ${blend}></a>`;
   }
 
   // Hero marquee = cert logos with names
