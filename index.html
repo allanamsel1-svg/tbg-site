@@ -505,7 +505,7 @@
     {name:"Rovan",            img:"images/rovan.png",        bg:"#0d0d0d", blend:false},
     {name:"Silque",           img:"images/silque.png",       bg:"#1a2332", blend:false},
     {name:"Lumora",           img:"images/lumora.png",       bg:"#0f3a5f", blend:false},
-    {name:"Auréa",            img:"images/aurea.png",        bg:"#ffffff", blend:true},
+    {name:"Aurea",            img:"images/aurea.png",        bg:"#ffffff", blend:true, slug:"aurea"},
     {name:"Cottelle",         img:"images/cottelle.png",     bg:"#ffffff", blend:true},
     {name:"Cottona",          img:"images/cottona.png",      bg:"#f5f1e8", blend:true},
     {name:"Masquerade NYC",   img:"images/masquerade.png",   bg:"#0a0a0a", blend:false},
@@ -536,7 +536,7 @@
     return `<span class="cert-logo">${c.svg}</span>`;
   }
   function brandCard(b){
-    const slug = b.name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-$/,'');
+    const slug = b.slug || b.name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/-$/,'');
     const blend = b.blend ? 'style="mix-blend-mode:multiply;"' : '';
     return `<a href="${slug}.html" class="brand-card" style="background:${b.bg};" aria-label="${b.name}"><img src="${b.img}" alt="${b.name}" loading="lazy" ${blend}></a>`;
   }
