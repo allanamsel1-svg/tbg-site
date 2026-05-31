@@ -119,14 +119,12 @@
 
   /* OUR BRANDS — FLOATING LOGOS */
   .brands-section { overflow:hidden; padding-bottom:140px; }
-  .brand-mq { width:100%; overflow:hidden; cursor:grab; user-select:none; padding:40px 0; -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent); mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent); }
-  .brand-mq.dragging { cursor:grabbing; }
+  .brand-mq { width:100%; overflow:hidden; padding:40px 0; -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent); mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent); }
   .brand-track { display:flex; width:max-content; align-items:center; gap:60px; animation:brandScroll 25s linear infinite; padding:0 30px; }
   .brand-mq:hover .brand-track,
   .brand-mq.dragging .brand-track { animation-play-state:paused; }
   @keyframes brandScroll { from{transform:translateX(0);} to{transform:translateX(-50%);} }
   .brand-card { flex-shrink:0; height:180px; display:flex; align-items:center; justify-content:center; cursor:pointer; text-decoration:none; border:none; background:transparent; padding:0; transition:opacity .3s ease, transform .3s ease; }
-  .brand-mq.dragging .brand-card { pointer-events:none; }
   .brand-card:hover { opacity:.7; transform:translateY(-3px); }
   .brand-card img { height:100%; width:auto; max-width:380px; object-fit:contain; display:block; }
 
@@ -537,42 +535,9 @@
   document.getElementById('certTrack').innerHTML =
     (certs.map(certLogo).join('')).repeat(2);
 
-  // Build brand drag marquee — duplicated for seamless loop
+  // Build brand marquee — duplicated for seamless loop
   const brandTrack = document.getElementById('brandTrack');
   brandTrack.innerHTML = (brands.map(brandCard).join('') + brands.map(brandCard).join(''));
-
-  // Drag-to-scrub behavior with click detection
-  const brandMq = document.getElementById('brandMq');
-  let isDragging = false, startX = 0, scrollLeft = 0, didDrag = false;
-
-  brandMq.addEventListener('mousedown', e => {
-    isDragging = true;
-    didDrag = false;
-    brandMq.classList.add('dragging');
-    startX = e.pageX - brandMq.offsetLeft;
-    scrollLeft = brandMq.scrollLeft;
-  });
-  brandMq.addEventListener('mouseleave', () => { isDragging = false; brandMq.classList.remove('dragging'); });
-  brandMq.addEventListener('mouseup', () => { isDragging = false; brandMq.classList.remove('dragging'); });
-  brandMq.addEventListener('mousemove', e => {
-    if (!isDragging) return;
-    const x = e.pageX - brandMq.offsetLeft;
-    const delta = x - startX;
-    if (Math.abs(delta) > 5) {
-      didDrag = true;
-      e.preventDefault();
-      brandMq.scrollLeft = scrollLeft - delta * 1.5;
-    }
-  });
-
-  // Block click only if user actually dragged
-  brandMq.addEventListener('click', e => {
-    if (didDrag) {
-      e.preventDefault();
-      e.stopPropagation();
-      didDrag = false;
-    }
-  }, true);
 
   // Save scroll position before navigating to a brand page
   document.querySelectorAll('.brand-card').forEach(card => {
