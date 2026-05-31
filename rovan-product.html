@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rovan — Product Detail</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --dark: #111111;
+    --card: #161616;
+    --border: #2a2a2a;
+    --gunmetal: #2c2f33;
+    --silver: #8a8f96;
+    --light-silver: #c8cdd4;
+    --white: #f0f0f0;
+    --accent: #c0a060;
+    --accent-dim: #8a7040;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    min-height: 100vh;
+  }
+
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.97);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px;
+    height: 64px;
+    backdrop-filter: blur(8px);
+  }
+
+  .nav-left { display: flex; align-items: center; gap: 32px; }
+
+  .back-link {
+    color: var(--silver);
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--white); }
+
+  .nav-brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0.08em;
+    color: var(--white);
+  }
+  .nav-brand span { color: var(--accent); }
+
+  /* BREADCRUMB */
+  .breadcrumb {
+    padding: 16px 48px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--silver);
+    border-bottom: 1px solid var(--border);
+    background: var(--dark);
+  }
+  .breadcrumb a { color: var(--silver); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--accent); }
+  .breadcrumb span { color: var(--accent); margin: 0 8px; }
+
+  /* PRODUCT LAYOUT */
+  .product-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: calc(100vh - 130px);
+  }
+
+  /* LEFT — IMAGE PANEL */
+  .image-panel {
+    background: #111;
+    border-right: 1px solid var(--border);
+    position: sticky;
+    top: 64px;
+    height: calc(100vh - 64px);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .main-image-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px;
+    background: #0f0f0f;
+  }
+
+  .main-image-wrap img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: transform 0.4s;
+  }
+  .main-image-wrap img:hover { transform: scale(1.03); }
+
+  .thumbnail-strip {
+    display: flex;
+    gap: 1px;
+    padding: 1px;
+    background: var(--border);
+    border-top: 1px solid var(--border);
+  }
+
+  .thumb {
+    flex: 1;
+    aspect-ratio: 1;
+    background: #161616;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: background 0.2s;
+  }
+  .thumb:hover, .thumb.active { background: #222; }
+  .thumb img { width: 100%; height: 100%; object-fit: contain; padding: 8px; }
+  .thumb-placeholder {
+    width: 32px;
+    height: 32px;
+    border: 1px dashed var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gunmetal);
+    font-size: 10px;
+  }
+
+  /* RIGHT — INFO PANEL */
+  .info-panel {
+    padding: 48px;
+    overflow-y: auto;
+  }
+
+  .product-category-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  .product-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    letter-spacing: 0.06em;
+    line-height: 1;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .product-tagline {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--silver);
+    letter-spacing: 0.06em;
+    margin-bottom: 32px;
+    font-style: italic;
+  }
+
+  /* PRICING BLOCK */
+  .pricing-block {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 24px;
+    margin-bottom: 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+  }
+  .pricing-cell {
+    background: var(--card);
+    padding: 20px;
+  }
+  .pricing-cell .label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--silver);
+    margin-bottom: 6px;
+  }
+  .pricing-cell .price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    letter-spacing: 0.04em;
+    color: var(--white);
+  }
+  .pricing-cell.highlight .price { color: var(--accent); }
+  .pricing-cell .note {
+    font-size: 9px;
+    color: var(--silver);
+    margin-top: 4px;
+    letter-spacing: 0.06em;
+  }
+
+  /* SECTION HEADER */
+  .section-header {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* SPECS TABLE */
+  .specs-table {
+    margin-bottom: 40px;
+  }
+  .spec-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid #1a1a1a;
+    font-size: 12px;
+  }
+  .spec-label {
+    color: var(--silver);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    font-size: 11px;
+    text-transform: uppercase;
+  }
+  .spec-value {
+    color: var(--white);
+    font-weight: 400;
+  }
+
+  /* CERTIFICATIONS */
+  .cert-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 40px;
+  }
+  .cert-chip {
+    background: var(--gunmetal);
+    border: 1px solid var(--border);
+    padding: 6px 14px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--light-silver);
+  }
+
+  /* ASSETS SECTION */
+  .assets-section {
+    margin-bottom: 40px;
+  }
+
+  .asset-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .asset-tile {
+    aspect-ratio: 1;
+    background: var(--card);
+    border: 1px dashed var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    text-decoration: none;
+  }
+  .asset-tile:hover { border-color: var(--accent); }
+  .asset-tile .asset-icon { font-size: 24px; color: var(--silver); }
+  .asset-tile .asset-label {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--silver);
+    text-align: center;
+    padding: 0 8px;
+  }
+
+  .video-tile {
+    background: var(--card);
+    border: 1px dashed var(--border);
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  .video-tile:hover { border-color: var(--accent); }
+  .video-play {
+    width: 48px;
+    height: 48px;
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .video-info .video-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+  .video-info .video-sub {
+    font-size: 10px;
+    color: var(--silver);
+    letter-spacing: 0.08em;
+  }
+
+  /* BRAND ATTRIBUTES LINK */
+  .brand-attr-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    text-decoration: none;
+    margin-top: 48px;
+    margin-bottom: 48px;
+    transition: border-color 0.2s;
+  }
+  .brand-attr-link:hover { border-color: var(--accent); }
+  .brand-attr-link .bal-left .label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .brand-attr-link .bal-left .title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.06em;
+    color: var(--white);
+  }
+  .brand-attr-link .arrow {
+    font-size: 24px;
+    color: var(--accent);
+  }
+
+  @media (max-width: 900px) {
+    .product-layout { grid-template-columns: 1fr; }
+    .image-panel { position: relative; height: 50vw; top: 0; }
+    .info-panel { padding: 32px 20px; }
+    nav { padding: 0 20px; }
+    .breadcrumb { padding: 12px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <a href="rovan.html" class="back-link">← Store</a>
+    <div class="nav-brand">ROV<span>A</span>N</div>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="../index.html">TBG</a>
+  <span>›</span>
+  <a href="rovan.html">Rovan</a>
+  <span>›</span>
+  <span id="breadcrumbName">Product</span>
+</div>
+
+<div class="product-layout">
+  <!-- LEFT: IMAGE -->
+  <div class="image-panel">
+    <div class="main-image-wrap">
+      <img id="mainImage" src="" alt="Product Image">
+    </div>
+    <div class="thumbnail-strip" id="thumbStrip">
+      <!-- thumbnails rendered by JS -->
+    </div>
+  </div>
+
+  <!-- RIGHT: INFO -->
+  <div class="info-panel">
+    <div class="product-category-label" id="categoryLabel">Category</div>
+    <div class="product-name" id="productName">Product Name</div>
+    <div class="product-tagline" id="productTagline">Crafted for Confidence</div>
+
+    <div class="pricing-block">
+      <div class="pricing-cell highlight">
+        <div class="label">MSRP</div>
+        <div class="price" id="msrpPrice">—</div>
+        <div class="note">Suggested Retail Price</div>
+      </div>
+      <div class="pricing-cell">
+        <div class="label">Wholesale</div>
+        <div class="price" id="wholesalePrice">—</div>
+        <div class="note">Min. order applies</div>
+      </div>
+    </div>
+
+    <!-- SPECS -->
+    <div class="section-header">Product Specifications</div>
+    <div class="specs-table" id="specsTable"></div>
+
+    <!-- CERTIFICATIONS -->
+    <div class="section-header">Certifications & Compliance</div>
+    <div class="cert-chips" id="certChips"></div>
+
+    <!-- ASSETS -->
+    <div class="assets-section">
+      <div class="section-header">Product Assets</div>
+      <div class="asset-grid">
+        <a class="asset-tile" href="#">
+          <div class="asset-icon">📐</div>
+          <div class="asset-label">Front View</div>
+        </a>
+        <a class="asset-tile" href="#">
+          <div class="asset-icon">📐</div>
+          <div class="asset-label">Side View</div>
+        </a>
+        <a class="asset-tile" href="#">
+          <div class="asset-icon">📦</div>
+          <div class="asset-label">Packaging</div>
+        </a>
+        <a class="asset-tile" href="#">
+          <div class="asset-icon">📄</div>
+          <div class="asset-label">Spec Sheet</div>
+        </a>
+        <a class="asset-tile" href="#">
+          <div class="asset-icon">🖼</div>
+          <div class="asset-label">Hi-Res Images</div>
+        </a>
+        <a class="asset-tile" href="#">
+          <div class="asset-icon">📁</div>
+          <div class="asset-label">All Files</div>
+        </a>
+      </div>
+      <div class="video-tile">
+        <div class="video-play">▶</div>
+        <div class="video-info">
+          <div class="video-title" id="videoTitle">Product Video</div>
+          <div class="video-sub">Upload product video to activate</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BRAND ATTRIBUTES LINK -->
+    <a class="brand-attr-link" href="rovan-brand-attributes.html">
+      <div class="bal-left">
+        <div class="label">Rovan</div>
+        <div class="title">Brand Attributes & Guidelines</div>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+
+  </div>
+</div>
+
+<script>
+const PRODUCTS = {
+  'five-blade-razor':       { name: '5-Blade Razor', category: 'Hero Razors', msrp: 14.99, tagline: 'Five precision blades engineered for the closest, smoothest shave of your life.', image: 'images/rovan/5-blade-razor.png', specs: [ ['Blade Count','5 Stainless Steel Blades'],['Blade Coating','PTFE + Vitamin E'],['Lubrastrip','Aloe Vera & Vitamin E'],['Handle','Rubberized Precision Grip'],['Pivot Head','360° Flex Pivot'],['Compatibility','All Rovan Cartridges'],['Weight','2.4 oz'],['Dimensions','6.2" × 1.1"'],['Country of Origin','China'],['UPC','Assign on export'] ], certs: ['FDA Compliant','Dermatologist Tested','Cruelty-Free','CA Prop 65'] },
+  'sensitive-razor':        { name: 'Sensitive Razor', category: 'Hero Razors', msrp: 14.99, tagline: 'Engineered for sensitive skin. Fewer tugs, fewer nicks, more confidence.', image: 'images/rovan/sensitive-razor.png', specs: [ ['Blade Count','5 Ultra-Thin Blades'],['Blade Coating','PTFE + Aloe'],['Lubrastrip','Chamomile & Vitamin E'],['Handle','Soft-Touch Grip'],['Pivot Head','Flex Pivot'],['Skin Type','Sensitive'],['Compatibility','All Rovan Cartridges'],['UPC','Assign on export'] ], certs: ['Dermatologist Tested','Hypoallergenic','Cruelty-Free','CA Prop 65'] },
+  'precision-razor':        { name: 'Precision Razor', category: 'Hero Razors', msrp: 16.99, tagline: 'Precision-engineered for edge detailing and flawless lines.', image: 'images/rovan/precision-razor.png', specs: [ ['Blade Count','5 Precision Blades'],['Blade Coating','PTFE Triple Coat'],['Lubrastrip','Charcoal + Vitamin E'],['Handle','Weighted Aluminum'],['Pivot Head','Multi-Axis Pivot'],['Trimmer Blade','Yes, rear single blade'],['Compatibility','All Rovan Cartridges'],['UPC','Assign on export'] ], certs: ['FDA Compliant','Dermatologist Tested','Cruelty-Free'] },
+  'three-blade-razor':      { name: '3-Blade Razor', category: 'Hero Razors', msrp: 11.99, tagline: 'Essential performance. Three blades, zero compromise.', image: 'images/rovan/3-blade-razor.png', specs: [ ['Blade Count','3 Stainless Steel Blades'],['Blade Coating','PTFE Coated'],['Lubrastrip','Aloe Vera'],['Handle','Contoured Grip'],['Compatibility','Rovan 3-Blade Cartridges'],['UPC','Assign on export'] ], certs: ['FDA Compliant','Cruelty-Free','CA Prop 65'] },
+  'mini-travel-razor':      { name: 'Mini Travel Razor', category: 'Hero Razors', msrp: 12.99, tagline: 'Full performance in a compact form. Built for the man on the move.', image: 'images/rovan/mini-travel-razor.png', specs: [ ['Blade Count','5 Blades'],['Blade Coating','PTFE + Vitamin E'],['Handle','Compact Travel Grip'],['Folding','Yes, protective cover'],['TSA Compliant','Yes'],['Compatibility','All Rovan Cartridges'],['UPC','Assign on export'] ], certs: ['TSA Approved','FDA Compliant','Cruelty-Free'] },
+  'cartridge-4pack':        { name: 'Cartridge Refills 4-Pack', category: 'Cartridge Refills', msrp: 12.99, tagline: 'Precision-engineered replacement cartridges for a consistent, premium shave.', image: 'images/rovan/cartridge-4pack.png', specs: [ ['Count','4 Cartridges'],['Blade Count','5 per Cartridge'],['Blade Material','Surgical-Grade Stainless Steel'],['Coating','PTFE + Vitamin E'],['Lubrastrip','Aloe & Chamomile'],['Compatibility','All Rovan 5-Blade Handles'],['Shelf Life','24 months'] ], certs: ['FDA Compliant','Cruelty-Free'] },
+  'cartridge-8pack':        { name: 'Cartridge Refills 8-Pack', category: 'Cartridge Refills', msrp: 21.99, tagline: 'Two months of perfect shaves. Maximum value, zero compromise.', image: 'images/rovan/cartridge-8pack.png', specs: [ ['Count','8 Cartridges'],['Blade Count','5 per Cartridge'],['Blade Material','Surgical-Grade Stainless Steel'],['Coating','PTFE + Vitamin E'],['Compatibility','All Rovan 5-Blade Handles'],['Shelf Life','24 months'] ], certs: ['FDA Compliant','Cruelty-Free'] },
+  'cartridge-12pack':       { name: 'Cartridge Refills 12-Pack', category: 'Cartridge Refills', msrp: 29.99, tagline: 'Stock up and save. Three months covered.', image: 'images/rovan/cartridge-12pack.png', specs: [ ['Count','12 Cartridges'],['Blade Count','5 per Cartridge'],['Blade Material','Surgical-Grade Stainless Steel'],['Coating','PTFE Triple Layer'],['Compatibility','All Rovan 5-Blade Handles'],['Shelf Life','24 months'] ], certs: ['FDA Compliant','Cruelty-Free','CA Prop 65'] },
+  'cartridge-24pack':       { name: 'Cartridge Refills 24-Pack', category: 'Cartridge Refills', msrp: 49.99, tagline: 'Maximum value. Half a year of elite shaves.', image: 'images/rovan/cartridge-24pack.png', specs: [ ['Count','24 Cartridges'],['Blade Count','5 per Cartridge'],['Blade Material','Surgical-Grade Stainless Steel'],['Coating','PTFE Triple Layer'],['Club Pack','Yes'],['Compatibility','All Rovan 5-Blade Handles'],['Shelf Life','24 months'] ], certs: ['FDA Compliant','Cruelty-Free','CA Prop 65'] },
+  'shave-gel':              { name: 'Shave Gel', category: 'Shave Gels', msrp: 8.99, tagline: 'Rich, lubricating gel that lets the blade glide effortlessly.', image: 'images/rovan/shave-gel.png', specs: [ ['Volume','7 fl oz (207 mL)'],['Skin Type','All Skin Types'],['Formula','Rich Lather Gel'],['Key Ingredients','Aloe Vera, Glycerin, Vitamin E'],['Alcohol-Free','Yes'],['Paraben-Free','Yes'],['Shelf Life','36 months'] ], certs: ['FDA Compliant','Dermatologist Tested','Cruelty-Free','CA Prop 65'] },
+  'sensitive-shave-gel':    { name: 'Sensitive Shave Gel', category: 'Shave Gels', msrp: 9.99, tagline: 'Fragrance-free formula designed for reactive and sensitive skin.', image: 'images/rovan/sensitive-shave-gel.png', specs: [ ['Volume','7 fl oz (207 mL)'],['Skin Type','Sensitive'],['Formula','Fragrance-Free Gel'],['Key Ingredients','Chamomile, Aloe, Glycerin'],['Alcohol-Free','Yes'],['Fragrance-Free','Yes'],['Shelf Life','36 months'] ], certs: ['Dermatologist Tested','Hypoallergenic','Cruelty-Free','CA Prop 65'] },
+  'cooling-shave-gel':      { name: 'Cooling Shave Gel', category: 'Shave Gels', msrp: 9.99, tagline: 'Menthol-infused formula that delivers an instantly refreshing, cooling sensation.', image: 'images/rovan/cooling-shave-gel.png', specs: [ ['Volume','7 fl oz (207 mL)'],['Skin Type','Normal to Oily'],['Formula','Cooling Menthol Gel'],['Key Ingredients','Menthol, Aloe Vera, Glycerin'],['Alcohol-Free','Yes'],['Shelf Life','36 months'] ], certs: ['FDA Compliant','Dermatologist Tested','Cruelty-Free'] },
+  'hydrating-shave-gel':    { name: 'Hydrating Shave Gel', category: 'Shave Gels', msrp: 9.99, tagline: 'Moisture-locking formula that leaves skin soft and hydrated post-shave.', image: 'images/rovan/hydrating-shave-gel.png', specs: [ ['Volume','7 fl oz (207 mL)'],['Skin Type','Dry to Normal'],['Formula','Hydrating Gel'],['Key Ingredients','Hyaluronic Acid, Aloe, Glycerin'],['Alcohol-Free','Yes'],['Shelf Life','36 months'] ], certs: ['FDA Compliant','Dermatologist Tested','Cruelty-Free','CA Prop 65'] },
+  'shave-gel-twinpack':     { name: 'Shave Gel Twin Pack', category: 'Shave Gels', msrp: 16.99, tagline: 'Double the value. Same precision formula — stocked and ready.', image: 'images/rovan/shave-gel-twinpack.png', specs: [ ['Count','2 × 7 fl oz (414 mL total)'],['Skin Type','All Skin Types'],['Key Ingredients','Aloe Vera, Glycerin, Vitamin E'],['Alcohol-Free','Yes'],['Value Pack','Yes'],['Shelf Life','36 months'] ], certs: ['FDA Compliant','Dermatologist Tested','Cruelty-Free'] },
+  'shave-cream':            { name: 'Shave Cream', category: 'Shave Creams', msrp: 8.99, tagline: 'Classic whipped cream formula for a rich, cushioned shave.', image: 'images/rovan/shave-cream.png', specs: [ ['Volume','5.1 oz (150 mL)'],['Skin Type','All Skin Types'],['Formula','Whipped Cream'],['Key Ingredients','Shea Butter, Glycerin, Aloe'],['Alcohol-Free','Yes'],['Shelf Life','36 months'] ], certs: ['FDA Compliant','Dermatologist Tested','Cruelty-Free','CA Prop 65'] },
+  'sensitive-shave-cream':  { name: 'Sensitive Shave Cream', category: 'Shave Creams', msrp: 9.99, tagline: 'Calming, fragrance-free cream that softens skin and reduces razor irritation.', image: 'images/rovan/sensitive-shave-cream.png', specs: [ ['Volume','5.1 oz (150 mL)'],['Skin Type','Sensitive'],['Formula','Fragrance-Free Cream'],['Key Ingredients','Chamomile, Aloe, Shea Butter'],['Fragrance-Free','Yes'],['Shelf Life','36 months'] ], certs: ['Dermatologist Tested','Hypoallergenic','Cruelty-Free'] },
+  'moisturizing-shave-cream':{ name: 'Moisturizing Shave Cream', category: 'Shave Creams', msrp: 9.99, tagline: 'Enriched formula that shaves and moisturizes in one step.', image: 'images/rovan/moisturizing-shave-cream.png', specs: [ ['Volume','5.1 oz (150 mL)'],['Skin Type','Dry to Normal'],['Formula','Hydrating Cream'],['Key Ingredients','Hyaluronic Acid, Shea Butter, Aloe'],['Alcohol-Free','Yes'],['Shelf Life','36 months'] ], certs: ['FDA Compliant','Dermatologist Tested','Cruelty-Free','CA Prop 65'] },
+  'aftershave-balm':        { name: 'After Shave Balm', category: 'After Shave', msrp: 11.99, tagline: 'Instantly soothes and seals post-shave skin. No burn, just comfort.', image: 'images/rovan/aftershave-balm.png', specs: [ ['Volume','5 fl oz (148 mL)'],['Skin Type','All Skin Types'],['Formula','Balm'],['Key Ingredients','Witch Hazel, Panthenol, Aloe'],['Alcohol-Free','Yes'],['Shelf Life','36 months'] ], certs: ['FDA Compliant','Dermatologist Tested','Cruelty-Free'] },
+  'aftershave-soothing-gel':{ name: 'After Shave Soothing Gel', category: 'After Shave', msrp: 11.99, tagline: 'Lightweight cooling gel that calms redness and closes pores.', image: 'images/rovan/aftershave-soothing-gel.png', specs: [ ['Volume','5 fl oz (148 mL)'],['Skin Type','All / Sensitive'],['Formula','Cooling Gel'],['Key Ingredients','Aloe Vera, Tea Tree, Menthol'],['Alcohol-Free','Yes'],['Shelf Life','36 months'] ], certs: ['Dermatologist Tested','Cruelty-Free','CA Prop 65'] },
+  'aftershave-lotion':      { name: 'After Shave Lotion', category: 'After Shave', msrp: 11.99, tagline: 'Classic finish. Tones, hydrates, and leaves a clean masculine scent.', image: 'images/rovan/aftershave-lotion.png', specs: [ ['Volume','5 fl oz (148 mL)'],['Skin Type','Normal to Oily'],['Formula','Light Lotion'],['Key Ingredients','Witch Hazel, Vitamin E, Aloe'],['Scented','Yes — Signature Rovan'],['Shelf Life','36 months'] ], certs: ['FDA Compliant','Dermatologist Tested','Cruelty-Free'] },
+  'aftershave-duo':         { name: 'After Shave Duo', category: 'After Shave', msrp: 19.99, tagline: 'Two sizes, one formula. Perfect for home and travel.', image: 'images/rovan/aftershave-duo.png', specs: [ ['Contents','1× Full Size + 1× Travel Size'],['Volume','5 fl oz + 2 fl oz'],['Formula','Soothing Balm'],['Key Ingredients','Witch Hazel, Panthenol, Aloe'],['Alcohol-Free','Yes'],['Value Pack','Yes'] ], certs: ['FDA Compliant','Dermatologist Tested','Cruelty-Free'] },
+  'moisturizer':            { name: 'Moisturizer', category: 'Face Care', msrp: 14.99, tagline: 'Daily face hydration. Lightweight, non-greasy, all-day moisture.', image: 'images/rovan/moisturizer.png', specs: [ ['Volume','2.5 fl oz (75 mL)'],['Skin Type','All Skin Types'],['Formula','Lightweight Lotion'],['Key Ingredients','Hyaluronic Acid, Niacinamide, Aloe'],['SPF','None (use with SPF if desired)'],['Shelf Life','24 months'] ], certs: ['Dermatologist Tested','Non-Comedogenic','Cruelty-Free','CA Prop 65'] },
+  'anti-aging-cream':       { name: 'Anti-Aging Cream', category: 'Face Care', msrp: 19.99, tagline: 'Targets fine lines and firmness. Proven ingredients, visible results.', image: 'images/rovan/anti-aging-cream.png', specs: [ ['Volume','1.7 fl oz (50 mL)'],['Skin Type','Mature / All'],['Formula','Rich Cream'],['Key Ingredients','Retinol, Peptides, Hyaluronic Acid'],['Night / Day','Night Formula'],['Shelf Life','24 months'] ], certs: ['Dermatologist Tested','Non-Comedogenic','Cruelty-Free'] },
+  'pre-shave-oil':          { name: 'Pre-Shave Oil', category: 'Pre-Shave', msrp: 12.99, tagline: 'Primes skin and beard for the ultimate glide. Reduces drag and irritation.', image: 'images/rovan/pre-shave-oil.png', specs: [ ['Volume','1 fl oz (30 mL)'],['Skin Type','All Skin Types'],['Formula','Dry Oil'],['Key Ingredients','Jojoba, Argan, Vitamin E'],['Absorbs Quickly','Yes'],['Shelf Life','24 months'] ], certs: ['Dermatologist Tested','Cruelty-Free','Natural Ingredients'] },
+  'pre-shave-scrub':        { name: 'Pre-Shave Scrub', category: 'Pre-Shave', msrp: 10.99, tagline: 'Exfoliates dead skin and lifts beard hair for a closer, cleaner shave.', image: 'images/rovan/pre-shave-scrub.png', specs: [ ['Volume','4 fl oz (118 mL)'],['Skin Type','Normal to Oily'],['Formula','Exfoliating Scrub'],['Key Ingredients','Walnut Shell, Salicylic Acid, Aloe'],['Exfoliation Level','Medium'],['Shelf Life','24 months'] ], certs: ['Dermatologist Tested','Cruelty-Free'] },
+  'pre-shave-lotion':       { name: 'Pre-Shave Lotion', category: 'Pre-Shave', msrp: 10.99, tagline: 'Softens beard and conditions skin before the blade even touches.', image: 'images/rovan/pre-shave-lotion.png', specs: [ ['Volume','4 fl oz (118 mL)'],['Skin Type','Sensitive / Dry'],['Formula','Conditioning Lotion'],['Key Ingredients','Glycerin, Panthenol, Chamomile'],['Alcohol-Free','Yes'],['Shelf Life','24 months'] ], certs: ['Dermatologist Tested','Hypoallergenic','Cruelty-Free'] },
+  'body-wash':              { name: 'Body Wash', category: 'Body Care', msrp: 10.99, tagline: 'Deep clean with a masculine scent that lasts. Made for men who work hard.', image: 'images/rovan/body-wash.png', specs: [ ['Volume','16 fl oz (473 mL)'],['Skin Type','All Skin Types'],['Formula','Sulfate-Free Wash'],['Key Ingredients','Charcoal, Tea Tree, Aloe'],['Scent','Signature Rovan'],['Shelf Life','36 months'] ], certs: ['FDA Compliant','Dermatologist Tested','Cruelty-Free'] },
+  'body-lotion':            { name: 'Body Lotion', category: 'Body Care', msrp: 10.99, tagline: 'Fast-absorbing, all-day hydration. Non-greasy, masculine finish.', image: 'images/rovan/body-lotion.png', specs: [ ['Volume','12 fl oz (355 mL)'],['Skin Type','Dry to Normal'],['Formula','Lightweight Lotion'],['Key Ingredients','Shea Butter, Vitamin E, Aloe'],['Absorbs Quickly','Yes'],['Shelf Life','36 months'] ], certs: ['Dermatologist Tested','Cruelty-Free','CA Prop 65'] },
+  'deodorant':              { name: 'Deodorant', category: 'Body Care', msrp: 8.99, tagline: '72-hour odor protection. No white marks, no compromise.', image: 'images/rovan/deodorant.png', specs: [ ['Size','2.7 oz (76g)'],['Protection','72-Hour Odor Control'],['Formula','Aluminum-Free'],['Key Ingredients','Baking Soda, Arrowroot, Coconut Oil'],['Scent','Signature Rovan'],['Shelf Life','24 months'] ], certs: ['Dermatologist Tested','Aluminum-Free','Cruelty-Free'] },
+  'starter-kit':            { name: 'Starter Kit', category: 'Gift Sets', msrp: 34.99, tagline: 'Everything to start shaving the Rovan way. The perfect introduction.', image: 'images/rovan/starter-kit.png', specs: [ ['Contents','5-Blade Razor + Shave Gel + Cartridge 4-Pack'],['Packaging','Premium Gift Box'],['Retail Ready','Yes'],['Gift Wrapping','Box-ready'],['UPC','Assign on export'] ], certs: ['FDA Compliant','Cruelty-Free'] },
+  'daily-essentials':       { name: 'Daily Essentials', category: 'Gift Sets', msrp: 39.99, tagline: 'The daily Rovan routine. Everything you need, every single day.', image: 'images/rovan/daily-essentials.png', specs: [ ['Contents','5-Blade Razor + Body Wash + Shave Cream'],['Packaging','Premium Gift Box'],['Retail Ready','Yes'],['UPC','Assign on export'] ], certs: ['FDA Compliant','Cruelty-Free'] },
+  'ultimate-shave-kit':     { name: 'Ultimate Shave Kit', category: 'Gift Sets', msrp: 49.99, tagline: 'The complete pre-to-post shave system. Engineered for perfection.', image: 'images/rovan/ultimate-shave-kit.png', specs: [ ['Contents','5-Blade Razor + Shave Cream + Shave Gel + After Shave Balm'],['Packaging','Premium Gift Box'],['Retail Ready','Yes'],['UPC','Assign on export'] ], certs: ['FDA Compliant','Dermatologist Tested','Cruelty-Free'] },
+  'beard-grooming-kit':     { name: 'Beard Grooming Kit', category: 'Gift Sets', msrp: 54.99, tagline: 'For the man who takes his beard as seriously as his shave.', image: 'images/rovan/beard-grooming-kit.png', specs: [ ['Contents','Precision Razor + Beard Oil + Beard Balm'],['Packaging','Premium Gift Box'],['Retail Ready','Yes'],['UPC','Assign on export'] ], certs: ['Dermatologist Tested','Cruelty-Free','Natural Ingredients'] },
+  'luxury-shave-kit':       { name: 'Luxury Shave Kit', category: 'Gift Sets', msrp: 64.99, tagline: 'Four-piece premium shave ritual. The ultimate gift for the discerning man.', image: 'images/rovan/luxury-shave-kit.png', specs: [ ['Contents','Pre-Shave Oil + 5-Blade Razor + Shave Cream + After Shave Balm'],['Packaging','Premium Black Gift Box with Magnetic Closure'],['Retail Ready','Yes'],['UPC','Assign on export'] ], certs: ['FDA Compliant','Dermatologist Tested','Cruelty-Free'] },
+  'travel-gift-set':        { name: 'Travel Gift Set', category: 'Gift Sets', msrp: 44.99, tagline: 'Full Rovan routine in travel-size format. TSA-ready, gift-ready.', image: 'images/rovan/travel-gift-set.png', specs: [ ['Contents','Travel Razor + Travel Shave Gel + Travel After Shave + Travel Moisturizer'],['Packaging','Premium Gift Box'],['TSA Compliant','Yes (all < 3.4 oz)'],['Retail Ready','Yes'] ], certs: ['TSA Approved','FDA Compliant','Cruelty-Free'] },
+  'beard-care-duo':         { name: 'Beard Care Duo', category: 'Gift Sets', msrp: 24.99, tagline: 'Beard wash and beard conditioner. The two-step system for a groomed beard.', image: 'images/rovan/beard-care-duo.png', specs: [ ['Contents','Beard Wash 8oz + Beard Conditioner 8oz'],['Packaging','Gift-ready sleeve'],['Retail Ready','Yes'],['Shelf Life','24 months'] ], certs: ['Dermatologist Tested','Cruelty-Free','Natural Ingredients'] },
+  'complete-care-pack':     { name: 'Complete Care Pack', category: 'Gift Sets', msrp: 29.99, tagline: 'Head-to-toe Rovan grooming. Two full-size products, zero compromise.', image: 'images/rovan/complete-care-pack.png', specs: [ ['Contents','Body Wash 16oz + Body Lotion 12oz'],['Packaging','Gift-ready sleeve'],['Retail Ready','Yes'],['Value','Yes'],['Shelf Life','36 months'] ], certs: ['Dermatologist Tested','Cruelty-Free','CA Prop 65'] },
+};
+
+function calcWholesale(msrp) {
+  return (msrp * 0.5).toFixed(2);
+}
+
+const params = new URLSearchParams(window.location.search);
+const sku = params.get('sku');
+const product = PRODUCTS[sku];
+
+if (product) {
+  document.title = `Rovan — ${product.name}`;
+  document.getElementById('breadcrumbName').textContent = product.name;
+  document.getElementById('categoryLabel').textContent = product.category;
+  document.getElementById('productName').textContent = product.name;
+  document.getElementById('productTagline').textContent = product.tagline;
+  document.getElementById('msrpPrice').textContent = `$${product.msrp.toFixed(2)}`;
+  document.getElementById('wholesalePrice').textContent = `$${calcWholesale(product.msrp)}`;
+  document.getElementById('videoTitle').textContent = `${product.name} — Product Demo`;
+
+  // Main image
+  const mainImg = document.getElementById('mainImage');
+  mainImg.src = product.image;
+  mainImg.alt = product.name;
+
+  // Thumbnails
+  const strip = document.getElementById('thumbStrip');
+  const thumbLabels = ['Main', 'Angle', 'Detail', 'Pack', 'Lifestyle'];
+  strip.innerHTML = thumbLabels.map((label, i) => `
+    <div class="thumb ${i === 0 ? 'active' : ''}" onclick="switchThumb(this, '${i === 0 ? product.image : ''}')">
+      ${i === 0 
+        ? `<img src="${product.image}" alt="${label}">`
+        : `<div class="thumb-placeholder">${label.charAt(0)}</div>`}
+    </div>
+  `).join('');
+
+  // Specs
+  const specsTable = document.getElementById('specsTable');
+  specsTable.innerHTML = product.specs.map(([label, value]) => `
+    <div class="spec-row">
+      <div class="spec-label">${label}</div>
+      <div class="spec-value">${value}</div>
+    </div>
+  `).join('');
+
+  // Certs
+  const certChips = document.getElementById('certChips');
+  certChips.innerHTML = product.certs.map(c => `<div class="cert-chip">${c}</div>`).join('');
+
+} else {
+  document.getElementById('productName').textContent = 'Product Not Found';
+}
+
+function switchThumb(el, src) {
+  document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  if (src) document.getElementById('mainImage').src = src;
+}
+</script>
+</body>
+</html>

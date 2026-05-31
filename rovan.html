@@ -3,64 +3,716 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rovan — Tomorrow Brand Group</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Archivo:wght@400;500;600;700;800;900&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Rovan — Crafted for Confidence</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{--ink:#211d18;--paper:#f4efe7;--paper-2:#ece4d8;--card:#fbf8f2;--line:#ddd3c4;--accent:#8a7355;--cream:#ecdcc4;}
-  *{margin:0;padding:0;box-sizing:border-box;}
-  body{font-family:'Manrope',sans-serif;background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;}
-  a{color:inherit;text-decoration:none;}
-  nav{display:flex;align-items:center;justify-content:space-between;padding:22px 40px;border-bottom:1px solid var(--line);background:var(--paper);position:sticky;top:0;z-index:10;}
-  .nav-logo{font-family:'Archivo',sans-serif;font-weight:900;font-size:15px;letter-spacing:-.02em;text-transform:uppercase;line-height:.92;}
-  .nav-logo span{color:var(--accent);}
-  .back{font-family:'Archivo',sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);padding:10px 20px;border-radius:100px;transition:all .25s;background:var(--card);cursor:pointer;}
-  .back:hover{background:var(--ink);color:#fff;border-color:var(--ink);}
-  .brand-hero{display:grid;grid-template-columns:340px 1fr;min-height:420px;}
-  .brand-logo-panel{background:#fff;display:flex;align-items:center;justify-content:center;padding:60px;border-right:1px solid var(--line);}
-  .brand-logo-panel img{max-width:240px;max-height:220px;object-fit:contain;}
-  .brand-info{padding:60px;display:flex;flex-direction:column;justify-content:center;background:var(--card);}
-  .brand-label{font-family:'Archivo',sans-serif;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
-  .brand-name{font-family:'Playfair Display',serif;font-weight:400;font-size:clamp(2.2rem,4vw,3.2rem);line-height:1.05;margin-bottom:16px;}
-  .brand-cat{font-size:.95rem;color:#4f4a42;font-weight:300;}
-  .attr-section{padding:60px 40px;max-width:1200px;margin:0 auto;}
-  .attr-label{font-family:'Archivo',sans-serif;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--accent);margin-bottom:24px;}
-  .attr-image{width:100%;border-radius:8px;border:1px solid var(--line);display:block;}
-  footer{border-top:1px solid var(--line);padding:28px 40px;display:flex;justify-content:space-between;align-items:center;font-size:.82rem;color:#8a867d;margin-top:40px;}
-  .fl{font-family:'Archivo',sans-serif;font-weight:900;font-size:13px;text-transform:uppercase;color:var(--ink);}
-  .fl span{color:var(--accent);}
-  @media(max-width:820px){.brand-hero{grid-template-columns:1fr;}.brand-logo-panel{border-right:none;border-bottom:1px solid var(--line);padding:40px;}.brand-info{padding:40px;}}
+  :root {
+    --black: #0a0a0a;
+    --dark: #111111;
+    --card: #161616;
+    --border: #2a2a2a;
+    --gunmetal: #2c2f33;
+    --silver: #8a8f96;
+    --light-silver: #c8cdd4;
+    --white: #f0f0f0;
+    --accent: #c0a060;
+    --accent-dim: #8a7040;
+    --red: #cc4444;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.97);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px;
+    height: 64px;
+    backdrop-filter: blur(8px);
+  }
+
+  .nav-left {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .back-link {
+    color: var(--silver);
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--white); }
+
+  .nav-brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 0.08em;
+    color: var(--white);
+  }
+  .nav-brand span { color: var(--accent); }
+
+  .nav-tagline {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--silver);
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .selected-count {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--silver);
+  }
+  .selected-count span { color: var(--accent); }
+
+  .btn-pdf {
+    background: var(--accent);
+    color: var(--black);
+    border: none;
+    padding: 10px 24px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-pdf:hover { background: var(--accent-dim); color: var(--white); }
+  .btn-pdf:disabled { background: var(--gunmetal); color: var(--silver); cursor: not-allowed; }
+
+  /* HERO STRIP */
+  .hero-strip {
+    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0f0f0f 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 48px 48px 40px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    letter-spacing: 0.06em;
+    line-height: 1;
+    color: var(--white);
+  }
+  .hero-title span { color: var(--accent); }
+
+  .hero-sub {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--silver);
+    margin-top: 8px;
+  }
+
+  .hero-stat {
+    text-align: right;
+  }
+  .hero-stat .num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .hero-stat .label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--silver);
+  }
+
+  /* TABS */
+  .tabs-bar {
+    background: var(--dark);
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tabs-bar::-webkit-scrollbar { display: none; }
+
+  .tab {
+    padding: 16px 24px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--silver);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .tab:hover { color: var(--white); }
+  .tab.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  /* GRID */
+  .store-body {
+    padding: 40px 48px 80px;
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 2px;
+  }
+
+  /* PRODUCT CARD */
+  .product-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    position: relative;
+    transition: border-color 0.2s;
+    cursor: pointer;
+  }
+  .product-card:hover { border-color: var(--silver); }
+  .product-card.checked { border-color: var(--accent); }
+
+  .card-checkbox {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 2;
+    width: 20px;
+    height: 20px;
+    accent-color: var(--accent);
+    cursor: pointer;
+  }
+
+  .card-image-wrap {
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+    background: #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .card-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 20px;
+    transition: transform 0.3s;
+  }
+  .product-card:hover .card-image-wrap img { transform: scale(1.04); }
+
+  .card-image-placeholder {
+    width: 80px;
+    height: 80px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gunmetal);
+    font-size: 28px;
+  }
+
+  .card-info {
+    padding: 16px 18px 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  .card-category {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-dim);
+    margin-bottom: 6px;
+  }
+
+  .card-name {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--white);
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .card-pricing {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .card-msrp {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--white);
+    letter-spacing: 0.04em;
+  }
+
+  .card-msrp-label {
+    font-size: 9px;
+    color: var(--silver);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+
+  .card-view {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .card-view:hover { color: var(--white); }
+
+  /* BRAND ATTRIBUTES TAB */
+  .brand-attr-panel {
+    display: none;
+    padding: 0;
+  }
+  .brand-attr-panel.active { display: block; }
+  .brand-attr-panel img {
+    width: 100%;
+    display: block;
+  }
+
+  /* EMPTY STATE */
+  .empty-state {
+    text-align: center;
+    padding: 80px 20px;
+    color: var(--silver);
+  }
+  .empty-state .icon { font-size: 40px; margin-bottom: 16px; }
+  .empty-state p { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; }
+
+  /* PDF OVERLAY */
+  .pdf-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+  }
+  .pdf-overlay.active { display: flex; }
+  .pdf-modal {
+    background: var(--dark);
+    border: 1px solid var(--border);
+    padding: 48px;
+    max-width: 480px;
+    width: 100%;
+    text-align: center;
+  }
+  .pdf-modal h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+  .pdf-modal p {
+    font-size: 12px;
+    color: var(--silver);
+    letter-spacing: 0.06em;
+    margin-bottom: 32px;
+  }
+  .pdf-modal .btn-pdf { width: 100%; padding: 14px; font-size: 12px; }
+  .btn-cancel {
+    display: block;
+    margin-top: 16px;
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--silver);
+    padding: 10px 24px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.2s;
+  }
+  .btn-cancel:hover { border-color: var(--silver); color: var(--white); }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .hero-strip { padding: 32px 20px; }
+    .hero-title { font-size: 48px; }
+    .store-body { padding: 24px 20px 60px; }
+    .tabs-bar { padding: 0 20px; }
+    .product-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+  }
 </style>
 </head>
 <body>
+
 <nav>
-  <div class="nav-logo">Tomorrow Brand<span>.</span>Group</div>
-  <a class="back" onclick="goBack()" href="#">← Back to Brands</a>
+  <div class="nav-left">
+    <a href="../index.html" class="back-link">← All Brands</a>
+    <div>
+      <div class="nav-brand">ROV<span>A</span>N</div>
+    </div>
+    <div class="nav-tagline">Crafted for Confidence</div>
+  </div>
+  <div class="nav-actions">
+    <div class="selected-count"><span id="selectedNum">0</span> Selected</div>
+    <button class="btn-pdf" id="pdfBtn" disabled onclick="openPdfModal()">Generate PDF Catalog</button>
+  </div>
 </nav>
-<div class="brand-hero">
-  <div class="brand-logo-panel">
-    <img src="images/rovan.png" alt="Rovan">
+
+<div class="hero-strip">
+  <div>
+    <div class="hero-title">MEN'S <span>GROOMING</span></div>
+    <div class="hero-sub">Premium Collection · A Better Shave. Every Day.</div>
   </div>
-  <div class="brand-info">
-    <div class="brand-label">In-House Brand</div>
-    <div class="brand-name">Rovan</div>
-    <div class="brand-cat">Mens Grooming</div>
+  <div class="hero-stat">
+    <div class="num" id="skuCount">51</div>
+    <div class="label">SKUs Available</div>
   </div>
 </div>
-<div class="attr-section">
-  <div class="attr-label">Brand Attributes and Design Direction</div>
-  <img src="images/brands/brandrovan.png" alt="Rovan brand attributes" class="attr-image">
+
+<div class="tabs-bar" id="tabsBar">
+  <button class="tab active" data-tab="all" onclick="switchTab('all', this)">All Products</button>
+  <button class="tab" data-tab="hero-razors" onclick="switchTab('hero-razors', this)">Hero Razors</button>
+  <button class="tab" data-tab="cartridge-refills" onclick="switchTab('cartridge-refills', this)">Cartridge Refills</button>
+  <button class="tab" data-tab="shave-gels" onclick="switchTab('shave-gels', this)">Shave Gels</button>
+  <button class="tab" data-tab="shave-creams" onclick="switchTab('shave-creams', this)">Shave Creams</button>
+  <button class="tab" data-tab="after-shave" onclick="switchTab('after-shave', this)">After Shave</button>
+  <button class="tab" data-tab="face-care" onclick="switchTab('face-care', this)">Face Care</button>
+  <button class="tab" data-tab="pre-shave" onclick="switchTab('pre-shave', this)">Pre-Shave</button>
+  <button class="tab" data-tab="body-care" onclick="switchTab('body-care', this)">Body Care</button>
+  <button class="tab" data-tab="gift-sets" onclick="switchTab('gift-sets', this)">Gift Sets</button>
+  <button class="tab" data-tab="brand-attributes" onclick="switchTab('brand-attributes', this)">Brand Attributes</button>
 </div>
-<footer>
-  <div class="fl">Tomorrow Brand<span>.</span>Group</div>
-  <div>&copy; 2026 Tomorrow Brand Group</div>
-</footer>
+
+<div class="store-body">
+  <div class="product-grid" id="productGrid"></div>
+  <div class="brand-attr-panel" id="brandAttrPanel">
+    <img src="images/rovan/brandattributesrovan.png" alt="Rovan Brand Attributes">
+  </div>
+</div>
+
+<!-- PDF Modal -->
+<div class="pdf-overlay" id="pdfOverlay">
+  <div class="pdf-modal">
+    <h2>Generate Catalog</h2>
+    <p id="pdfModalDesc">Generating landscape PDF for selected SKUs</p>
+    <button class="btn-pdf" onclick="generatePDF()">Download PDF Catalog</button>
+    <button class="btn-cancel" onclick="closePdfModal()">Cancel</button>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
-  function goBack(){
-    event.preventDefault();
-    window.location.href = 'index.html';
+
+const PRODUCTS = [
+  // HERO RAZORS
+  { id: 'five-blade-razor', name: '5-Blade Razor', category: 'hero-razors', categoryLabel: 'Hero Razors', msrp: 14.99, image: 'images/rovan/5-blade-razor.png', slug: 'five-blade-razor' },
+  { id: 'sensitive-razor', name: 'Sensitive Razor', category: 'hero-razors', categoryLabel: 'Hero Razors', msrp: 14.99, image: 'images/rovan/sensitive-razor.png', slug: 'sensitive-razor' },
+  { id: 'precision-razor', name: 'Precision Razor', category: 'hero-razors', categoryLabel: 'Hero Razors', msrp: 16.99, image: 'images/rovan/precision-razor.png', slug: 'precision-razor' },
+  { id: 'three-blade-razor', name: '3-Blade Razor', category: 'hero-razors', categoryLabel: 'Hero Razors', msrp: 11.99, image: 'images/rovan/3-blade-razor.png', slug: 'three-blade-razor' },
+  { id: 'mini-travel-razor', name: 'Mini Travel Razor', category: 'hero-razors', categoryLabel: 'Hero Razors', msrp: 12.99, image: 'images/rovan/mini-travel-razor.png', slug: 'mini-travel-razor' },
+
+  // CARTRIDGE REFILLS
+  { id: 'cartridge-4pack', name: 'Cartridge Refills 4-Pack', category: 'cartridge-refills', categoryLabel: 'Cartridge Refills', msrp: 12.99, image: 'images/rovan/cartridge-4pack.png', slug: 'cartridge-4pack' },
+  { id: 'cartridge-8pack', name: 'Cartridge Refills 8-Pack', category: 'cartridge-refills', categoryLabel: 'Cartridge Refills', msrp: 21.99, image: 'images/rovan/cartridge-8pack.png', slug: 'cartridge-8pack' },
+  { id: 'cartridge-12pack', name: 'Cartridge Refills 12-Pack', category: 'cartridge-refills', categoryLabel: 'Cartridge Refills', msrp: 29.99, image: 'images/rovan/cartridge-12pack.png', slug: 'cartridge-12pack' },
+  { id: 'cartridge-24pack', name: 'Cartridge Refills 24-Pack', category: 'cartridge-refills', categoryLabel: 'Cartridge Refills', msrp: 49.99, image: 'images/rovan/cartridge-24pack.png', slug: 'cartridge-24pack' },
+
+  // SHAVE GELS
+  { id: 'shave-gel', name: 'Shave Gel', category: 'shave-gels', categoryLabel: 'Shave Gels', msrp: 8.99, image: 'images/rovan/shave-gel.png', slug: 'shave-gel' },
+  { id: 'sensitive-shave-gel', name: 'Sensitive Shave Gel', category: 'shave-gels', categoryLabel: 'Shave Gels', msrp: 9.99, image: 'images/rovan/sensitive-shave-gel.png', slug: 'sensitive-shave-gel' },
+  { id: 'cooling-shave-gel', name: 'Cooling Shave Gel', category: 'shave-gels', categoryLabel: 'Shave Gels', msrp: 9.99, image: 'images/rovan/cooling-shave-gel.png', slug: 'cooling-shave-gel' },
+  { id: 'hydrating-shave-gel', name: 'Hydrating Shave Gel', category: 'shave-gels', categoryLabel: 'Shave Gels', msrp: 9.99, image: 'images/rovan/hydrating-shave-gel.png', slug: 'hydrating-shave-gel' },
+  { id: 'shave-gel-twinpack', name: 'Shave Gel Twin Pack', category: 'shave-gels', categoryLabel: 'Shave Gels', msrp: 16.99, image: 'images/rovan/shave-gel-twinpack.png', slug: 'shave-gel-twinpack' },
+
+  // SHAVE CREAMS
+  { id: 'shave-cream', name: 'Shave Cream', category: 'shave-creams', categoryLabel: 'Shave Creams', msrp: 8.99, image: 'images/rovan/shave-cream.png', slug: 'shave-cream' },
+  { id: 'sensitive-shave-cream', name: 'Sensitive Shave Cream', category: 'shave-creams', categoryLabel: 'Shave Creams', msrp: 9.99, image: 'images/rovan/sensitive-shave-cream.png', slug: 'sensitive-shave-cream' },
+  { id: 'moisturizing-shave-cream', name: 'Moisturizing Shave Cream', category: 'shave-creams', categoryLabel: 'Shave Creams', msrp: 9.99, image: 'images/rovan/moisturizing-shave-cream.png', slug: 'moisturizing-shave-cream' },
+
+  // AFTER SHAVE
+  { id: 'aftershave-balm', name: 'After Shave Balm', category: 'after-shave', categoryLabel: 'After Shave', msrp: 11.99, image: 'images/rovan/aftershave-balm.png', slug: 'aftershave-balm' },
+  { id: 'aftershave-soothing-gel', name: 'After Shave Soothing Gel', category: 'after-shave', categoryLabel: 'After Shave', msrp: 11.99, image: 'images/rovan/aftershave-soothing-gel.png', slug: 'aftershave-soothing-gel' },
+  { id: 'aftershave-lotion', name: 'After Shave Lotion', category: 'after-shave', categoryLabel: 'After Shave', msrp: 11.99, image: 'images/rovan/aftershave-lotion.png', slug: 'aftershave-lotion' },
+  { id: 'aftershave-duo', name: 'After Shave Duo', category: 'after-shave', categoryLabel: 'After Shave', msrp: 19.99, image: 'images/rovan/aftershave-duo.png', slug: 'aftershave-duo' },
+
+  // FACE CARE
+  { id: 'moisturizer', name: 'Moisturizer', category: 'face-care', categoryLabel: 'Face Care', msrp: 14.99, image: 'images/rovan/moisturizer.png', slug: 'moisturizer' },
+  { id: 'anti-aging-cream', name: 'Anti-Aging Cream', category: 'face-care', categoryLabel: 'Face Care', msrp: 19.99, image: 'images/rovan/anti-aging-cream.png', slug: 'anti-aging-cream' },
+
+  // PRE-SHAVE
+  { id: 'pre-shave-oil', name: 'Pre-Shave Oil', category: 'pre-shave', categoryLabel: 'Pre-Shave', msrp: 12.99, image: 'images/rovan/pre-shave-oil.png', slug: 'pre-shave-oil' },
+  { id: 'pre-shave-scrub', name: 'Pre-Shave Scrub', category: 'pre-shave', categoryLabel: 'Pre-Shave', msrp: 10.99, image: 'images/rovan/pre-shave-scrub.png', slug: 'pre-shave-scrub' },
+  { id: 'pre-shave-lotion', name: 'Pre-Shave Lotion', category: 'pre-shave', categoryLabel: 'Pre-Shave', msrp: 10.99, image: 'images/rovan/pre-shave-lotion.png', slug: 'pre-shave-lotion' },
+
+  // BODY CARE
+  { id: 'body-wash', name: 'Body Wash', category: 'body-care', categoryLabel: 'Body Care', msrp: 10.99, image: 'images/rovan/body-wash.png', slug: 'body-wash' },
+  { id: 'body-lotion', name: 'Body Lotion', category: 'body-care', categoryLabel: 'Body Care', msrp: 10.99, image: 'images/rovan/body-lotion.png', slug: 'body-lotion' },
+  { id: 'deodorant', name: 'Deodorant', category: 'body-care', categoryLabel: 'Body Care', msrp: 8.99, image: 'images/rovan/deodorant.png', slug: 'deodorant' },
+
+  // GIFT SETS
+  { id: 'starter-kit', name: 'Starter Kit', category: 'gift-sets', categoryLabel: 'Gift Sets', msrp: 34.99, image: 'images/rovan/starter-kit.png', slug: 'starter-kit' },
+  { id: 'daily-essentials', name: 'Daily Essentials', category: 'gift-sets', categoryLabel: 'Gift Sets', msrp: 39.99, image: 'images/rovan/daily-essentials.png', slug: 'daily-essentials' },
+  { id: 'ultimate-shave-kit', name: 'Ultimate Shave Kit', category: 'gift-sets', categoryLabel: 'Gift Sets', msrp: 49.99, image: 'images/rovan/ultimate-shave-kit.png', slug: 'ultimate-shave-kit' },
+  { id: 'beard-grooming-kit', name: 'Beard Grooming Kit', category: 'gift-sets', categoryLabel: 'Gift Sets', msrp: 54.99, image: 'images/rovan/beard-grooming-kit.png', slug: 'beard-grooming-kit' },
+  { id: 'luxury-shave-kit', name: 'Luxury Shave Kit', category: 'gift-sets', categoryLabel: 'Gift Sets', msrp: 64.99, image: 'images/rovan/luxury-shave-kit.png', slug: 'luxury-shave-kit' },
+  { id: 'travel-gift-set', name: 'Travel Gift Set', category: 'gift-sets', categoryLabel: 'Gift Sets', msrp: 44.99, image: 'images/rovan/travel-gift-set.png', slug: 'travel-gift-set' },
+  { id: 'beard-care-duo', name: 'Beard Care Duo', category: 'gift-sets', categoryLabel: 'Gift Sets', msrp: 24.99, image: 'images/rovan/beard-care-duo.png', slug: 'beard-care-duo' },
+  { id: 'complete-care-pack', name: 'Complete Care Pack', category: 'gift-sets', categoryLabel: 'Gift Sets', msrp: 29.99, image: 'images/rovan/complete-care-pack.png', slug: 'complete-care-pack' },
+];
+
+let currentTab = 'all';
+let checked = new Set();
+
+function switchTab(tab, el) {
+  currentTab = tab;
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+
+  const grid = document.getElementById('productGrid');
+  const attr = document.getElementById('brandAttrPanel');
+
+  if (tab === 'brand-attributes') {
+    grid.style.display = 'none';
+    attr.classList.add('active');
+  } else {
+    grid.style.display = 'grid';
+    attr.classList.remove('active');
+    renderGrid(tab);
   }
+}
+
+function renderGrid(tab) {
+  const grid = document.getElementById('productGrid');
+  const filtered = tab === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.category === tab);
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><div class="icon">◻</div><p>No products in this category yet</p></div>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map(p => `
+    <div class="product-card ${checked.has(p.id) ? 'checked' : ''}" id="card-${p.id}">
+      <input type="checkbox" class="card-checkbox" ${checked.has(p.id) ? 'checked' : ''}
+        onclick="toggleCheck(event, '${p.id}')">
+      <div class="card-image-wrap" onclick="goToDetail('${p.slug}')">
+        <img src="${p.image}" alt="${p.name}"
+          onerror="this.style.display='none';this.parentNode.innerHTML='<div class=\'card-image-placeholder\'>◻</div>'">
+      </div>
+      <div class="card-info">
+        <div class="card-category">${p.categoryLabel}</div>
+        <div class="card-name">${p.name}</div>
+        <div class="card-pricing">
+          <div>
+            <div class="card-msrp-label">MSRP</div>
+            <div class="card-msrp">$${p.msrp.toFixed(2)}</div>
+          </div>
+          <a class="card-view" href="rovan-product.html?sku=${p.slug}">View Details →</a>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  document.getElementById('skuCount').textContent = PRODUCTS.length;
+}
+
+function toggleCheck(e, id) {
+  e.stopPropagation();
+  if (checked.has(id)) {
+    checked.delete(id);
+    document.getElementById('card-' + id)?.classList.remove('checked');
+  } else {
+    checked.add(id);
+    document.getElementById('card-' + id)?.classList.add('checked');
+  }
+  updateCount();
+}
+
+function updateCount() {
+  const n = checked.size;
+  document.getElementById('selectedNum').textContent = n;
+  const btn = document.getElementById('pdfBtn');
+  btn.disabled = n === 0;
+}
+
+function goToDetail(slug) {
+  window.location.href = `rovan-product.html?sku=${slug}`;
+}
+
+function openPdfModal() {
+  const n = checked.size;
+  document.getElementById('pdfModalDesc').textContent = `${n} SKU${n !== 1 ? 's' : ''} selected for your Rovan catalog`;
+  document.getElementById('pdfOverlay').classList.add('active');
+}
+
+function closePdfModal() {
+  document.getElementById('pdfOverlay').classList.remove('active');
+}
+
+async function generatePDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
+  const W = 297, H = 210;
+
+  // Cover page
+  doc.setFillColor(10, 10, 10);
+  doc.rect(0, 0, W, H, 'F');
+  doc.setTextColor(192, 160, 96);
+  doc.setFontSize(64);
+  doc.setFont('helvetica', 'bold');
+  doc.text('ROVAN', W/2, H/2 - 10, { align: 'center' });
+  doc.setFontSize(12);
+  doc.setTextColor(138, 143, 150);
+  doc.text('CRAFTED FOR CONFIDENCE', W/2, H/2 + 10, { align: 'center' });
+  doc.setFontSize(9);
+  doc.text('PRODUCT CATALOG', W/2, H/2 + 22, { align: 'center' });
+
+  const selectedProducts = PRODUCTS.filter(p => checked.has(p.id));
+
+  for (const product of selectedProducts) {
+    doc.addPage();
+    doc.setFillColor(10, 10, 10);
+    doc.rect(0, 0, W, H, 'F');
+
+    // Left panel background
+    doc.setFillColor(22, 22, 22);
+    doc.rect(0, 0, 110, H, 'F');
+
+    // Category label
+    doc.setFontSize(8);
+    doc.setTextColor(138, 112, 64);
+    doc.setFont('helvetica', 'bold');
+    doc.text(product.categoryLabel.toUpperCase(), 125, 30);
+
+    // Product name
+    doc.setFontSize(28);
+    doc.setTextColor(240, 240, 240);
+    doc.setFont('helvetica', 'bold');
+    doc.text(product.name.toUpperCase(), 125, 48);
+
+    // Divider
+    doc.setDrawColor(192, 160, 96);
+    doc.setLineWidth(0.5);
+    doc.line(125, 54, 280, 54);
+
+    // MSRP
+    doc.setFontSize(10);
+    doc.setTextColor(138, 143, 150);
+    doc.setFont('helvetica', 'normal');
+    doc.text('MSRP', 125, 68);
+    doc.setFontSize(22);
+    doc.setTextColor(192, 160, 96);
+    doc.setFont('helvetica', 'bold');
+    doc.text(`$${product.msrp.toFixed(2)}`, 125, 80);
+
+    // Specs placeholder
+    doc.setFontSize(9);
+    doc.setTextColor(138, 143, 150);
+    doc.setFont('helvetica', 'normal');
+    const specs = getSpecs(product);
+    let y = 100;
+    specs.forEach(s => {
+      doc.setTextColor(192, 160, 96);
+      doc.text(s.label + ':', 125, y);
+      doc.setTextColor(200, 205, 212);
+      doc.text(s.value, 175, y);
+      y += 10;
+    });
+
+    // Branding bottom
+    doc.setFontSize(8);
+    doc.setTextColor(50, 50, 50);
+    doc.text('ROVAN  ·  A BETTER SHAVE. EVERY DAY.', W/2, H - 8, { align: 'center' });
+  }
+
+  doc.save('Rovan-Product-Catalog.pdf');
+  closePdfModal();
+}
+
+function getSpecs(product) {
+  const cat = product.category;
+  if (cat === 'hero-razors') return [
+    { label: 'Blade Count', value: product.name.includes('5') ? '5 Blades' : product.name.includes('3') ? '3 Blades' : '5 Blades' },
+    { label: 'Handle', value: 'Precision-grip Rubberized' },
+    { label: 'Lubrastrip', value: 'Vitamin E + Aloe' },
+    { label: 'Compatibility', value: 'Rovan Universal Cartridges' },
+    { label: 'UPC', value: 'Assign on export' },
+  ];
+  if (cat === 'cartridge-refills') return [
+    { label: 'Count', value: product.name },
+    { label: 'Blade Type', value: 'Stainless Steel, 5-Layer' },
+    { label: 'Coating', value: 'PTFE + Vitamin E' },
+    { label: 'Compatibility', value: 'All Rovan Handles' },
+  ];
+  if (cat === 'shave-gels' || cat === 'shave-creams') return [
+    { label: 'Volume', value: '7 fl oz (207 mL)' },
+    { label: 'Skin Type', value: product.name.includes('Sensitive') ? 'Sensitive' : 'All Skin Types' },
+    { label: 'Key Ingredients', value: 'Aloe Vera, Glycerin' },
+    { label: 'Alcohol-Free', value: 'Yes' },
+  ];
+  if (cat === 'after-shave') return [
+    { label: 'Volume', value: '5 fl oz (148 mL)' },
+    { label: 'Formula', value: 'Soothing + Hydrating' },
+    { label: 'Key Ingredients', value: 'Witch Hazel, Panthenol' },
+    { label: 'Alcohol-Free', value: 'Yes' },
+  ];
+  if (cat === 'gift-sets') return [
+    { label: 'Set Contents', value: 'See packaging' },
+    { label: 'Packaging', value: 'Premium Gift Box' },
+    { label: 'Retail Ready', value: 'Yes' },
+    { label: 'Min Order', value: 'Contact Sales' },
+  ];
+  return [
+    { label: 'Volume / Count', value: 'See packaging' },
+    { label: 'Formula', value: 'Premium Grade' },
+    { label: 'For', value: 'All Skin Types' },
+  ];
+}
+
+// Init
+renderGrid('all');
 </script>
 </body>
 </html>

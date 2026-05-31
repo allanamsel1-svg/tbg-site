@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rovan — Brand Attributes & Guidelines</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --dark: #111111;
+    --border: #2a2a2a;
+    --silver: #8a8f96;
+    --white: #f0f0f0;
+    --accent: #c0a060;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--black); color: var(--white); font-family: 'Montserrat', sans-serif; }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10,10,10,0.97);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px; height: 64px; backdrop-filter: blur(8px);
+  }
+  .nav-left { display: flex; align-items: center; gap: 32px; }
+  .back-link {
+    color: var(--silver); text-decoration: none;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--white); }
+  .nav-brand { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: 0.08em; }
+  .nav-brand span { color: var(--accent); }
+
+  .page-header {
+    padding: 48px;
+    border-bottom: 1px solid var(--border);
+  }
+  .page-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 10px;
+  }
+  .page-title {
+    font-family: 'Bebas Neue', sans-serif; font-size: 52px;
+    letter-spacing: 0.06em; line-height: 1; color: var(--white);
+  }
+  .page-sub {
+    font-size: 13px; color: var(--silver); margin-top: 8px;
+    letter-spacing: 0.06em; font-weight: 300;
+  }
+
+  .attr-image-wrap {
+    width: 100%;
+    padding: 0;
+  }
+  .attr-image-wrap img {
+    width: 100%;
+    display: block;
+  }
+
+  .attr-placeholder {
+    padding: 80px 48px;
+    text-align: center;
+    border: 2px dashed var(--border);
+    margin: 48px;
+    color: var(--silver);
+  }
+  .attr-placeholder .icon { font-size: 48px; margin-bottom: 16px; }
+  .attr-placeholder p { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; }
+  .attr-placeholder .path { color: var(--accent); margin-top: 8px; font-family: monospace; font-size: 13px; }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 24px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-brand { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 0.08em; }
+  .footer-brand span { color: var(--accent); }
+  .footer-tagline { font-size: 10px; color: var(--silver); letter-spacing: 0.14em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <a href="rovan.html" class="back-link">← Store</a>
+    <div class="nav-brand">ROV<span>A</span>N</div>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="page-label">Rovan Identity System</div>
+  <div class="page-title">Brand Attributes<br>& Guidelines</div>
+  <div class="page-sub">Typography · Color · Voice · Packaging · Retail Standards</div>
+</div>
+
+<div class="attr-image-wrap">
+  <img src="images/rovan/brandattributesrovan.png" alt="Rovan Brand Attributes"
+    onerror="this.style.display='none'; document.getElementById('attrPlaceholder').style.display='block'">
+</div>
+
+<div class="attr-placeholder" id="attrPlaceholder" style="display:none">
+  <div class="icon">🎨</div>
+  <p>Brand attributes image not yet uploaded</p>
+  <div class="path">images/rovan/brandattributesrovan.png</div>
+</div>
+
+<footer>
+  <div class="footer-brand">ROV<span>A</span>N</div>
+  <div class="footer-tagline">Crafted for Confidence · A Better Shave. Every Day.</div>
+</footer>
+
+</body>
+</html>
