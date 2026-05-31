@@ -15,8 +15,8 @@
   nav{display:flex;align-items:center;justify-content:space-between;padding:22px 40px;border-bottom:1px solid var(--line);background:var(--paper);position:sticky;top:0;z-index:10;}
   .nav-logo{font-family:'Archivo',sans-serif;font-weight:900;font-size:15px;letter-spacing:-.02em;text-transform:uppercase;line-height:.92;}
   .nav-logo span{color:var(--accent);}
-  .back{font-family:'Archivo',sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:8px;transition:opacity .25s;}
-  .back:hover{opacity:.6;}
+  .back{font-family:'Archivo',sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);padding:10px 20px;border-radius:100px;transition:all .25s;background:var(--card);cursor:pointer;}
+  .back:hover{background:var(--ink);color:#fff;border-color:var(--ink);}
   .brand-hero{display:grid;grid-template-columns:340px 1fr;min-height:420px;}
   .brand-logo-panel{background:#fff;display:flex;align-items:center;justify-content:center;padding:60px;border-right:1px solid var(--line);}
   .brand-logo-panel img{max-width:240px;max-height:220px;object-fit:contain;}
@@ -36,7 +36,7 @@
 <body>
 <nav>
   <div class="nav-logo">Tomorrow Brand<span>.</span>Group</div>
-  <a href="index.html" class="back">← All Brands</a>
+  <a class="back" onclick="goBack()" href="#">← Back to Brands</a>
 </nav>
 <div class="brand-hero">
   <div class="brand-logo-panel">
@@ -54,7 +54,13 @@
 </div>
 <footer>
   <div class="fl">Tomorrow Brand<span>.</span>Group</div>
-  <div>2026 Tomorrow Brand Group</div>
+  <div>&copy; 2026 Tomorrow Brand Group</div>
 </footer>
+<script>
+  function goBack(){
+    event.preventDefault();
+    window.location.href = 'index.html';
+  }
+</script>
 </body>
 </html>
