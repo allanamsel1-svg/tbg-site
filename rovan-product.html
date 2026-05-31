@@ -55,13 +55,35 @@
   }
   .back-link:hover { color: var(--white); }
 
-  .nav-brand {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    letter-spacing: 0.08em;
-    color: var(--white);
+  .nav-brand { display: none; }
+
+  .brand-hero {
+    text-align: center;
+    padding: 32px 48px 24px;
+    border-bottom: 1px solid var(--border);
+    background: var(--black);
   }
-  .nav-brand span { color: var(--accent); }
+  .brand-hero-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 56px;
+    letter-spacing: 0.14em;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .brand-hero-logo span { color: var(--accent); }
+  .brand-hero-tagline {
+    font-size: 9px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--silver);
+    margin-bottom: 16px;
+  }
+  .brand-hero-divider {
+    width: 40px; height: 1px;
+    background: var(--accent);
+    margin: 0 auto;
+  }
 
   /* BREADCRUMB */
   .breadcrumb {
@@ -388,12 +410,17 @@
 <nav>
   <div class="nav-left">
     <a href="rovan.html" class="back-link">← Store</a>
-    <div class="nav-brand">ROV<span>A</span>N</div>
   </div>
 </nav>
 
+<div class="brand-hero">
+  <div class="brand-hero-logo">ROV<span>A</span>N</div>
+  <div class="brand-hero-tagline">Crafted for Confidence · Razors & Grooming for Men</div>
+  <div class="brand-hero-divider"></div>
+</div>
+
 <div class="breadcrumb">
-  <a href="../index.html">TBG</a>
+  <a href="index.html">TBG</a>
   <span>›</span>
   <a href="rovan.html">Rovan</a>
   <span>›</span>

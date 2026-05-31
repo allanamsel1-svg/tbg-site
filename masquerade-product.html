@@ -29,8 +29,34 @@
   .nav-left { display: flex; align-items: center; gap: 32px; }
   .back-link { color: var(--silver); text-decoration: none; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; transition: color 0.2s; }
   .back-link:hover { color: var(--rose-gold); }
-  .nav-brand { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; letter-spacing: 0.22em; text-transform: uppercase; }
-  .nav-brand span { color: var(--rose-gold); }
+  
+  .nav-brand { display: none; }
+  .brand-hero {
+    text-align: center;
+    padding: 40px 48px 28px;
+    border-bottom: 1px solid var(--border);
+    background: var(--black);
+  }
+  .brand-hero-mask { margin-bottom: 16px; }
+  .brand-hero-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 56px;
+    font-weight: 300;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .brand-hero-logo span { color: var(--rose-gold); }
+  .brand-hero-sub {
+    font-size: 9px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--silver);
+    margin-bottom: 18px;
+  }
+  .brand-hero-divider { width: 40px; height: 1px; background: var(--rose-gold); margin: 0 auto; }
 
   .product-wrap {
     display: grid;
@@ -182,9 +208,22 @@
 <nav>
   <div class="nav-left">
     <a href="masquerade.html" class="back-link">← Store</a>
-    <div class="nav-brand"><svg width="28" height="18" viewBox="0 0 56 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;margin-right:10px;margin-bottom:2px"><path d="M28 8C22 8 17 4 10 4C5 4 1 7 1 12C1 19 6 24 13 24C17 24 20 22 22 19C23.5 21 25.5 22 28 22C30.5 22 32.5 21 34 19C36 22 39 24 43 24C50 24 55 19 55 12C55 7 51 4 46 4C39 4 34 8 28 8Z" stroke="#C8956C" stroke-width="2" fill="none"/><path d="M22 13C22 13 24 11 28 11C32 11 34 13 34 13" stroke="#C8956C" stroke-width="1.5" stroke-linecap="round"/><circle cx="13" cy="13" r="3" fill="#C8956C" opacity="0.3"/><circle cx="43" cy="13" r="3" fill="#C8956C" opacity="0.3"/></svg>MASQUERADE <span>NYC</span></div>
-  </div>
+    </div>
 </nav>
+
+<div class="brand-hero">
+  <div class="brand-hero-mask">
+    <svg width="64" height="40" viewBox="0 0 56 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M28 8C22 8 17 4 10 4C5 4 1 7 1 12C1 19 6 24 13 24C17 24 20 22 22 19C23.5 21 25.5 22 28 22C30.5 22 32.5 21 34 19C36 22 39 24 43 24C50 24 55 19 55 12C55 7 51 4 46 4C39 4 34 8 28 8Z" stroke="#C8956C" stroke-width="2" fill="none"/>
+      <path d="M22 13C22 13 24 11 28 11C32 11 34 13 34 13" stroke="#C8956C" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="13" cy="13" r="3" fill="#C8956C" opacity="0.3"/>
+      <circle cx="43" cy="13" r="3" fill="#C8956C" opacity="0.3"/>
+    </svg>
+  </div>
+  <div class="brand-hero-logo">MASQUERADE <span>NYC</span></div>
+  <div class="brand-hero-sub">Luxury Beauty · Reveal Your Beauty · Own Your Moment</div>
+  <div class="brand-hero-divider"></div>
+</div>
 
 <div class="product-wrap">
   <div class="product-visual">

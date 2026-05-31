@@ -61,20 +61,36 @@
   }
   .back-link:hover { color: var(--white); }
 
-  .nav-brand {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    letter-spacing: 0.08em;
-    color: var(--white);
-  }
-  .nav-brand span { color: var(--accent); }
+  .nav-brand { display: none; }
+  .nav-tagline { display: none; }
 
-  .nav-tagline {
+  .brand-hero {
+    text-align: center;
+    padding: 48px 48px 32px;
+    border-bottom: 1px solid var(--border);
+    background: var(--black);
+  }
+  .brand-hero-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    letter-spacing: 0.14em;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .brand-hero-logo span { color: var(--accent); }
+  .brand-hero-tagline {
     font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
     color: var(--silver);
+    margin-bottom: 20px;
+  }
+  .brand-hero-divider {
+    width: 48px;
+    height: 1px;
+    background: var(--accent);
+    margin: 0 auto;
   }
 
   .nav-actions {
@@ -389,11 +405,7 @@
 
 <nav>
   <div class="nav-left">
-    <a href="../index.html" class="back-link">← All Brands</a>
-    <div>
-      <div class="nav-brand">ROV<span>A</span>N</div>
-    </div>
-    <div class="nav-tagline">Crafted for Confidence</div>
+    <a href="index.html" class="back-link">← All Brands</a>
   </div>
   <div class="nav-actions">
     <div class="selected-count"><span id="selectedNum">0</span> Selected</div>
@@ -401,15 +413,10 @@
   </div>
 </nav>
 
-<div class="hero-strip">
-  <div>
-    <div class="hero-title">MEN'S <span>GROOMING</span></div>
-    <div class="hero-sub">Premium Collection · A Better Shave. Every Day.</div>
-  </div>
-  <div class="hero-stat">
-    <div class="num" id="skuCount">51</div>
-    <div class="label">SKUs Available</div>
-  </div>
+<div class="brand-hero">
+  <div class="brand-hero-logo">ROV<span>A</span>N</div>
+  <div class="brand-hero-tagline">Crafted for Confidence · Razors & Grooming for Men</div>
+  <div class="brand-hero-divider"></div>
 </div>
 
 <div class="tabs-bar" id="tabsBar">
