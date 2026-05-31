@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Masquerade NYC — Brand Attributes</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --charcoal: #1a1a1a;
+    --border: #2e2e2e;
+    --rose-gold: #C8956C;
+    --silver: #888;
+    --white: #ffffff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--black); color: var(--white); font-family: 'Montserrat', sans-serif; font-weight: 300; }
+
+  nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 48px; border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; background: rgba(10,10,10,0.96);
+    backdrop-filter: blur(12px); z-index: 100;
+  }
+  .nav-left { display: flex; align-items: center; gap: 32px; }
+  .back-link { color: var(--silver); text-decoration: none; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; transition: color 0.2s; }
+  .back-link:hover { color: var(--rose-gold); }
+  .nav-brand { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; letter-spacing: 0.22em; text-transform: uppercase; }
+  .nav-brand span { color: var(--rose-gold); }
+
+  .page-header {
+    padding: 60px 48px 40px;
+    border-bottom: 1px solid var(--border);
+  }
+  .page-label { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--rose-gold); margin-bottom: 16px; }
+  .page-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+  .page-sub { font-size: 10px; letter-spacing: 0.18em; color: var(--silver); text-transform: uppercase; }
+
+  .attr-image-wrap {
+    width: 100%;
+    background: #fff;
+  }
+  .attr-image-wrap img { width: 100%; display: block; }
+
+  .attr-placeholder {
+    text-align: center;
+    padding: 120px 48px;
+    color: var(--silver);
+  }
+  .attr-placeholder .icon { font-size: 48px; margin-bottom: 16px; }
+  .attr-placeholder p { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; }
+  .attr-placeholder .path { color: var(--rose-gold); margin-top: 8px; font-family: monospace; font-size: 13px; }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 24px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 300; letter-spacing: 0.18em; text-transform: uppercase; }
+  .footer-brand span { color: var(--rose-gold); }
+  .footer-tagline { font-size: 9px; color: var(--silver); letter-spacing: 0.16em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <a href="masquerade.html" class="back-link">← Store</a>
+    <div class="nav-brand"><svg width="28" height="18" viewBox="0 0 56 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;margin-right:10px;margin-bottom:2px"><path d="M28 8C22 8 17 4 10 4C5 4 1 7 1 12C1 19 6 24 13 24C17 24 20 22 22 19C23.5 21 25.5 22 28 22C30.5 22 32.5 21 34 19C36 22 39 24 43 24C50 24 55 19 55 12C55 7 51 4 46 4C39 4 34 8 28 8Z" stroke="#C8956C" stroke-width="2" fill="none"/><path d="M22 13C22 13 24 11 28 11C32 11 34 13 34 13" stroke="#C8956C" stroke-width="1.5" stroke-linecap="round"/><circle cx="13" cy="13" r="3" fill="#C8956C" opacity="0.3"/><circle cx="43" cy="13" r="3" fill="#C8956C" opacity="0.3"/></svg>MASQUERADE <span>NYC</span></div>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="page-label">Masquerade NYC Identity System</div>
+  <div class="page-title">Brand Attributes<br>& Guidelines</div>
+  <div class="page-sub">Typography · Color · Voice · Packaging · Retail Standards</div>
+</div>
+
+<div class="attr-image-wrap">
+  <img src="images/masquerade/brandattributesmasquerade.png" alt="Masquerade NYC Brand Attributes"
+    onerror="this.style.display='none'; document.getElementById('attrPlaceholder').style.display='block'">
+</div>
+
+<div class="attr-placeholder" id="attrPlaceholder" style="display:none">
+  <div class="icon">🎨</div>
+  <p>Brand attributes image not yet uploaded</p>
+  <div class="path">images/masquerade/brandattributesmasquerade.png</div>
+</div>
+
+<footer>
+  <div class="footer-brand">MASQUERADE <span>NYC</span></div>
+  <div class="footer-tagline">Reveal Your Beauty · Own Your Moment</div>
+</footer>
+
+</body>
+</html>

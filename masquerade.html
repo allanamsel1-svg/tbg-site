@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Masquerade NYC — Brand Store</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --charcoal: #1a1a1a;
+    --graphite: #2a2a2a;
+    --border: #2e2e2e;
+    --rose-gold: #C8956C;
+    --rose-gold-light: #e8b89a;
+    --soft-pink: #FF91C1;
+    --white: #ffffff;
+    --off-white: #f5f0eb;
+    --silver: #888;
+    --card-bg: #141414;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 48px;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: rgba(10,10,10,0.96);
+    backdrop-filter: blur(12px);
+    z-index: 100;
+  }
+  .nav-left { display: flex; align-items: center; gap: 32px; }
+  .back-link {
+    color: var(--silver);
+    text-decoration: none;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--rose-gold); }
+  .nav-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+  .nav-brand span { color: var(--rose-gold); }
+  .nav-right { display: flex; align-items: center; gap: 24px; }
+  .pdf-btn {
+    background: var(--rose-gold);
+    color: var(--black);
+    border: none;
+    padding: 10px 24px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .pdf-btn:hover { background: var(--rose-gold-light); transform: translateY(-1px); }
+  .selected-count {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--silver);
+    text-transform: uppercase;
+  }
+  .selected-count span { color: var(--rose-gold); font-weight: 500; }
+
+  /* TABS */
+  .tabs-wrap {
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    background: var(--charcoal);
+  }
+  .tabs-wrap::-webkit-scrollbar { display: none; }
+  .tabs {
+    display: flex;
+    gap: 0;
+    white-space: nowrap;
+  }
+  .tab {
+    padding: 16px 24px;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--silver);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .tab:hover { color: var(--white); }
+  .tab.active { color: var(--rose-gold); border-bottom-color: var(--rose-gold); }
+
+  /* GRID */
+  .grid-section { padding: 40px 48px 80px; }
+  .grid-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .grid-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .grid-count {
+    font-size: 10px;
+    color: var(--silver);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 2px;
+  }
+
+  .product-card {
+    background: var(--card-bg);
+    position: relative;
+    transition: transform 0.2s;
+  }
+  .product-card:hover { transform: translateY(-3px); }
+
+  .card-checkbox {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 2;
+  }
+  .card-checkbox input {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--rose-gold);
+    cursor: pointer;
+  }
+
+  .card-img-wrap {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    cursor: pointer;
+    background: #111;
+    overflow: hidden;
+  }
+  .card-img-wrap img {
+    max-height: 160px;
+    max-width: 100%;
+    object-fit: contain;
+    transition: transform 0.3s;
+  }
+  .card-img-wrap:hover img { transform: scale(1.05); }
+
+  .card-info {
+    padding: 16px;
+    border-top: 1px solid var(--border);
+  }
+  .card-name {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 4px;
+    color: var(--white);
+    line-height: 1.4;
+  }
+  .card-tagline {
+    font-size: 10px;
+    color: var(--silver);
+    margin-bottom: 10px;
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+  }
+  .card-prices {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .card-msrp {
+    font-size: 13px;
+    color: var(--rose-gold);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+  .card-wholesale {
+    font-size: 10px;
+    color: var(--silver);
+    letter-spacing: 0.06em;
+  }
+
+  /* BRAND ATTRIBUTES TAB */
+  .brand-attr-section {
+    padding: 0;
+    display: none;
+  }
+  .brand-attr-section.active { display: block; }
+  .brand-attr-section img {
+    width: 100%;
+    display: block;
+  }
+
+  /* HIDDEN STATE */
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 24px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .footer-brand span { color: var(--rose-gold); }
+  .footer-tagline {
+    font-size: 9px;
+    color: var(--silver);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <a href="index.html" class="back-link">← All Brands</a>
+    <div class="nav-brand"><svg width="28" height="18" viewBox="0 0 56 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;margin-right:10px;margin-bottom:2px"><path d="M28 8C22 8 17 4 10 4C5 4 1 7 1 12C1 19 6 24 13 24C17 24 20 22 22 19C23.5 21 25.5 22 28 22C30.5 22 32.5 21 34 19C36 22 39 24 43 24C50 24 55 19 55 12C55 7 51 4 46 4C39 4 34 8 28 8Z" stroke="#C8956C" stroke-width="2" fill="none"/><path d="M22 13C22 13 24 11 28 11C32 11 34 13 34 13" stroke="#C8956C" stroke-width="1.5" stroke-linecap="round"/><circle cx="13" cy="13" r="3" fill="#C8956C" opacity="0.3"/><circle cx="43" cy="13" r="3" fill="#C8956C" opacity="0.3"/></svg>MASQUERADE <span>NYC</span></div>
+  </div>
+  <div class="nav-right">
+    <div class="selected-count"><span id="selCount">0</span> Selected</div>
+    <button class="pdf-btn" onclick="generatePDF()">Generate PDF Catalog</button>
+  </div>
+</nav>
+
+<div class="tabs-wrap">
+  <div class="tabs">
+    <button class="tab active" onclick="showTab('all', this)">All</button>
+    <button class="tab" onclick="showTab('face', this)">Face</button>
+    <button class="tab" onclick="showTab('eye', this)">Eye</button>
+    <button class="tab" onclick="showTab('lip', this)">Lip</button>
+    <button class="tab" onclick="showTab('skincare', this)">Skincare</button>
+    <button class="tab" onclick="showTab('brushes', this)">Brushes & Tools</button>
+    <button class="tab" onclick="showTab('sets', this)">Sets & Kits</button>
+    <button class="tab" onclick="showTab('accessories', this)">Accessories</button>
+    <button class="tab" onclick="showTab('brand', this)">Brand Attributes</button>
+  </div>
+</div>
+
+<!-- TAB PANELS -->
+<div id="panel-all" class="tab-panel active">
+  <div class="grid-section">
+    <div class="grid-header">
+      <div class="grid-title">Full Collection</div>
+      <div class="grid-count" id="count-all"></div>
+    </div>
+    <div class="product-grid" id="grid-all"></div>
+  </div>
+</div>
+
+<div id="panel-face" class="tab-panel">
+  <div class="grid-section">
+    <div class="grid-header">
+      <div class="grid-title">Face</div>
+      <div class="grid-count" id="count-face"></div>
+    </div>
+    <div class="product-grid" id="grid-face"></div>
+  </div>
+</div>
+
+<div id="panel-eye" class="tab-panel">
+  <div class="grid-section">
+    <div class="grid-header">
+      <div class="grid-title">Eye Makeup</div>
+      <div class="grid-count" id="count-eye"></div>
+    </div>
+    <div class="product-grid" id="grid-eye"></div>
+  </div>
+</div>
+
+<div id="panel-lip" class="tab-panel">
+  <div class="grid-section">
+    <div class="grid-header">
+      <div class="grid-title">Lip</div>
+      <div class="grid-count" id="count-lip"></div>
+    </div>
+    <div class="product-grid" id="grid-lip"></div>
+  </div>
+</div>
+
+<div id="panel-skincare" class="tab-panel">
+  <div class="grid-section">
+    <div class="grid-header">
+      <div class="grid-title">Skincare</div>
+      <div class="grid-count" id="count-skincare"></div>
+    </div>
+    <div class="product-grid" id="grid-skincare"></div>
+  </div>
+</div>
+
+<div id="panel-brushes" class="tab-panel">
+  <div class="grid-section">
+    <div class="grid-header">
+      <div class="grid-title">Brushes & Tools</div>
+      <div class="grid-count" id="count-brushes"></div>
+    </div>
+    <div class="product-grid" id="grid-brushes"></div>
+  </div>
+</div>
+
+<div id="panel-sets" class="tab-panel">
+  <div class="grid-section">
+    <div class="grid-header">
+      <div class="grid-title">Sets & Kits</div>
+      <div class="grid-count" id="count-sets"></div>
+    </div>
+    <div class="product-grid" id="grid-sets"></div>
+  </div>
+</div>
+
+<div id="panel-accessories" class="tab-panel">
+  <div class="grid-section">
+    <div class="grid-header">
+      <div class="grid-title">Accessories & Refills</div>
+      <div class="grid-count" id="count-accessories"></div>
+    </div>
+    <div class="product-grid" id="grid-accessories"></div>
+  </div>
+</div>
+
+<div id="panel-brand" class="tab-panel">
+  <img src="images/masquerade/brandattributesmasquerade.png" alt="Masquerade NYC Brand Attributes" style="width:100%;display:block;">
+</div>
+
+<footer>
+  <div class="footer-brand">MASQUERADE <span>NYC</span></div>
+  <div class="footer-tagline">Reveal Your Beauty · Own Your Moment</div>
+</footer>
+
+<script>
+const PRODUCTS = [
+  // FACE
+  { id: 'matte_foundation',      name: 'Matte Foundation',       tagline: 'Full coverage, matte finish',        msrp: 38.00, cat: ['face','all'] },
+  { id: 'serum_foundation',      name: 'Serum Foundation',       tagline: 'Buildable coverage, natural finish',  msrp: 42.00, cat: ['face','all'] },
+  { id: 'tinted_moisturizer',    name: 'Tinted Moisturizer',     tagline: 'Sheer coverage, hydrating',          msrp: 32.00, cat: ['face','all'] },
+  { id: 'concealer',             name: 'Concealer',              tagline: 'Full coverage, creamy',              msrp: 28.00, cat: ['face','all'] },
+  { id: 'liquid_concealer',      name: 'Liquid Concealer',       tagline: 'Buildable coverage, smooth finish',  msrp: 30.00, cat: ['face','all'] },
+  { id: 'setting_powder',        name: 'Setting Powder',         tagline: 'Sets makeup, flawless finish',       msrp: 34.00, cat: ['face','all'] },
+  { id: 'setting_spray',         name: 'Setting Spray',          tagline: 'Locks makeup all day',               msrp: 26.00, cat: ['face','all'] },
+  { id: 'bronzer',               name: 'Bronzer',                tagline: 'Adds warmth, natural sun-kissed',    msrp: 32.00, cat: ['face','all'] },
+  { id: 'blush',                 name: 'Blush',                  tagline: 'Healthy flush, buildable color',     msrp: 28.00, cat: ['face','all'] },
+  { id: 'highlighter',           name: 'Highlighter',            tagline: 'Radiant glow, luminous finish',      msrp: 30.00, cat: ['face','all'] },
+  { id: 'contour_kit',           name: 'Contour Kit',            tagline: 'Define features, sculpt & shade',    msrp: 38.00, cat: ['face','all'] },
+  { id: 'green_color_corrector', name: 'Green Corrector',        tagline: 'Neutralizes redness, evens tone',   msrp: 22.00, cat: ['face','all'] },
+  { id: 'peach_color_corrector', name: 'Peach Corrector',        tagline: 'Brightens dark circles, evens tone',msrp: 22.00, cat: ['face','all'] },
+  { id: 'lavender_color_corrector', name: 'Lavender Corrector',  tagline: 'Neutralizes sallowness, brightens', msrp: 22.00, cat: ['face','all'] },
+  { id: 'highlight_palette',     name: 'Highlight Palette',      tagline: 'Multi glow, luminous',               msrp: 44.00, cat: ['face','all'] },
+  { id: 'blush_palette',         name: 'Blush Palette',          tagline: 'Multiple shades, versatile',         msrp: 40.00, cat: ['face','all'] },
+  { id: 'contour_palette',       name: 'Contour Palette',        tagline: 'Sculpt & define, professional',      msrp: 46.00, cat: ['face','all'] },
+  { id: 'eyeshadow_palette',     name: 'Eyeshadow Palette',      tagline: 'Rich pigment, blendable shades',     msrp: 52.00, cat: ['face','all'] },
+  { id: 'hydrating_primer',      name: 'Hydrating Primer',       tagline: 'Hydrates & smooths, natural glow',  msrp: 30.00, cat: ['face','all'] },
+  { id: 'mattifying_primer',     name: 'Mattifying Primer',      tagline: 'Controls shine, complete face',      msrp: 30.00, cat: ['face','all'] },
+  { id: 'travel_foundation',     name: 'Travel Foundation',      tagline: 'Perfect size, on the go',            msrp: 24.00, cat: ['face','all'] },
+
+  // EYE
+  { id: 'eyeshadow_primer',      name: 'Eyeshadow Primer',       tagline: 'Enhances color, all day wear',       msrp: 22.00, cat: ['eye','all'] },
+  { id: 'cream_eyeshadow',       name: 'Cream Eyeshadow',        tagline: 'Rich color, crease-proof',           msrp: 24.00, cat: ['eye','all'] },
+  { id: 'single_eyeshadow',      name: 'Single Eyeshadow',       tagline: 'Vibrant color, blendable',           msrp: 18.00, cat: ['eye','all'] },
+  { id: 'glitter_eyeshadow',     name: 'Glitter Eyeshadow',      tagline: 'Intense sparkle, long lasting',      msrp: 20.00, cat: ['eye','all'] },
+  { id: 'eyebrow_powder',        name: 'Eyebrow Powder',         tagline: 'Fill & define, natural look',        msrp: 20.00, cat: ['eye','all'] },
+  { id: 'brow_pomade',           name: 'Brow Pomade',            tagline: 'Sculpt & define, waterproof',        msrp: 22.00, cat: ['eye','all'] },
+  { id: 'brow_wax',              name: 'Brow Wax',               tagline: 'Sets brows all day',                 msrp: 18.00, cat: ['eye','all'] },
+  { id: 'mascara',               name: 'Mascara',                tagline: 'Volumizing, long wear',              msrp: 28.00, cat: ['eye','all'] },
+  { id: 'eyelash_curler',        name: 'Eyelash Curler',         tagline: 'Curls lashes effortlessly',          msrp: 18.00, cat: ['eye','all'] },
+
+  // LIP
+  { id: 'lipstick',              name: 'Lipstick',               tagline: 'Creamy color, satin finish',         msrp: 26.00, cat: ['lip','all'] },
+  { id: 'lip_liner',             name: 'Lip Liner',              tagline: 'Define & shape, long lasting',       msrp: 18.00, cat: ['lip','all'] },
+  { id: 'lip_balm',              name: 'Lip Balm',               tagline: 'Hydrates & protects, softens lips',  msrp: 16.00, cat: ['lip','all'] },
+  { id: 'lip_treatment',         name: 'Lip Treatment',          tagline: 'Repairs & protects, nourishes',      msrp: 22.00, cat: ['lip','all'] },
+  { id: 'lip_mask',              name: 'Lip Mask',               tagline: 'Deep hydration overnight',           msrp: 24.00, cat: ['lip','all'] },
+  { id: 'lip_collection_set',    name: 'Lip Collection Set',     tagline: 'Multiple finishes, versatile',       msrp: 58.00, cat: ['lip','sets','all'] },
+  { id: 'nude_lip_set',          name: 'Nude Lip Set',           tagline: 'Perfect nude shades, everyday',      msrp: 48.00, cat: ['lip','sets','all'] },
+  { id: 'bold_lip_set',          name: 'Bold Lip Set',           tagline: 'Statement shades, high impact',      msrp: 48.00, cat: ['lip','sets','all'] },
+  { id: 'lip_care_set',          name: 'Lip Care Set',           tagline: 'Complete lip care routine',          msrp: 42.00, cat: ['lip','sets','all'] },
+
+  // SKINCARE
+  { id: 'cleanser',              name: 'Cleanser',               tagline: 'Gently cleanses, refreshing',        msrp: 34.00, cat: ['skincare','all'] },
+  { id: 'serum',                 name: 'Serum',                  tagline: 'Hydrating, nourishing',              msrp: 48.00, cat: ['skincare','all'] },
+  { id: 'moisturizer',           name: 'Moisturizer',            tagline: 'Hydrating, softens skin',            msrp: 42.00, cat: ['skincare','all'] },
+
+  // BRUSHES & TOOLS
+  { id: 'powder_brush',          name: 'Powder Brush',           tagline: 'Sets & blends powder',               msrp: 28.00, cat: ['brushes','all'] },
+  { id: 'makeup_sponge',         name: 'Makeup Sponge',          tagline: 'Blend foundation seamlessly',        msrp: 16.00, cat: ['brushes','all'] },
+  { id: 'blending_sponge',       name: 'Blending Sponge',        tagline: 'Precision blending, smooth finish',  msrp: 18.00, cat: ['brushes','all'] },
+  { id: 'complete_brush_set',    name: 'Complete Brush Set',     tagline: 'Full collection, face & eyes',       msrp: 68.00, cat: ['brushes','all'] },
+  { id: 'complete_brush_set_pro',name: 'Complete Brush Set Pro', tagline: 'Professional grade, full collection',msrp: 88.00, cat: ['brushes','all'] },
+  { id: 'face_brush_set',        name: 'Face Brush Set',         tagline: 'Essential face brushes',             msrp: 52.00, cat: ['brushes','sets','all'] },
+  { id: 'eye_brush_set',         name: 'Eye Brush Set',          tagline: 'Essential eye brushes',              msrp: 48.00, cat: ['brushes','sets','all'] },
+  { id: 'professional_brush_set',name: 'Professional Brush Set', tagline: 'Pro quality, long wear',             msrp: 96.00, cat: ['brushes','sets','all'] },
+  { id: 'travel_brush_set',      name: 'Travel Brush Set',       tagline: 'Compact set, travel friendly',       msrp: 38.00, cat: ['brushes','sets','all'] },
+  { id: 'value_brush_set',       name: 'Value Brush Set',        tagline: 'Complete value collection',          msrp: 44.00, cat: ['brushes','sets','all'] },
+  { id: 'brush_set_deluxe',      name: 'Deluxe Brush Set',       tagline: 'Premium selection, all brushes',     msrp: 78.00, cat: ['brushes','sets','all'] },
+
+  // SETS & KITS
+  { id: 'skincare_essentials_set',name:'Skincare Essentials Set', tagline: 'Daily skincare essentials',          msrp: 68.00, cat: ['sets','all'] },
+  { id: 'hydrating_skincare_set', name:'Hydrating Skincare Set',  tagline: 'Hydrate & glow, complete care',      msrp: 72.00, cat: ['sets','all'] },
+  { id: 'skincare_set',           name:'Skincare Set',            tagline: 'Complete skincare routine',          msrp: 62.00, cat: ['sets','all'] },
+  { id: 'skincare_duo',           name:'Skincare Duo',            tagline: 'Essential two-step routine',         msrp: 48.00, cat: ['sets','all'] },
+  { id: 'luxury_gift_set',        name:'Luxury Gift Set',         tagline: 'Premium collection, luxury packaging',msrp:120.00, cat: ['sets','all'] },
+  { id: 'makeup_gift_set',        name:'Makeup Gift Set',         tagline: 'Perfect gift, beautifully packaged', msrp: 88.00, cat: ['sets','all'] },
+  { id: 'beauty_essentials_pack', name:'Beauty Essentials Pack',  tagline: 'Must have essentials',               msrp: 64.00, cat: ['sets','all'] },
+  { id: 'face_makeup_pack',       name:'Face Makeup Pack',        tagline: 'Complete face collection',           msrp: 72.00, cat: ['sets','all'] },
+  { id: 'eye_makeup_pack',        name:'Eye Makeup Pack',         tagline: 'All eye essentials in one',          msrp: 68.00, cat: ['sets','all'] },
+  { id: 'mini_lip_set',           name:'Mini Lip Set',            tagline: 'Mini shades, complete look',         msrp: 36.00, cat: ['sets','lip','all'] },
+
+  // ACCESSORIES & REFILLS
+  { id: 'makeup_bag',             name:'Makeup Bag',              tagline: 'Stylish & spacious, travel friendly',msrp: 38.00, cat: ['accessories','all'] },
+  { id: 'headband',               name:'Headband',                tagline: 'Comfortable, keeps hair back',       msrp: 14.00, cat: ['accessories','all'] },
+  { id: 'powder_refill',          name:'Powder Refill',           tagline: 'Refill & save, eco friendly',        msrp: 22.00, cat: ['accessories','all'] },
+  { id: 'counter_display',        name:'Counter Display',         tagline: 'Perfect for retail, attractive display',msrp:180.00, cat: ['accessories','all'] },
+  { id: 'professional_palettes',  name:'Professional Palettes',   tagline: 'Designed for pros, high pigment',    msrp:110.00, cat: ['accessories','all'] },
+];
+
+const selected = new Set();
+
+function wholesale(msrp) { return (msrp * 0.5).toFixed(2); }
+
+function buildCard(p) {
+  const div = document.createElement('div');
+  div.className = 'product-card';
+  div.innerHTML = `
+    <div class="card-checkbox">
+      <input type="checkbox" id="chk_${p.id}" onchange="toggleSelect('${p.id}', this.checked)">
+    </div>
+    <div class="card-img-wrap" onclick="window.location='masquerade-product.html?sku=${p.id}'">
+      <img src="images/masquerade/${p.id}.png" alt="${p.name}"
+           onerror="this.style.opacity='0.2'; this.src='data:image/svg+xml,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'80\\' height=\\'80\\'><rect fill=\\'%23333\\' width=\\'80\\' height=\\'80\\'></rect></svg>'">
+    </div>
+    <div class="card-info">
+      <div class="card-name">${p.name}</div>
+      <div class="card-tagline">${p.tagline}</div>
+      <div class="card-prices">
+        <div class="card-msrp">$${p.msrp.toFixed(2)}</div>
+        <div class="card-wholesale">WS $${wholesale(p.msrp)}</div>
+      </div>
+    </div>
+  `;
+  return div;
+}
+
+function renderGrids() {
+  const cats = ['all','face','eye','lip','skincare','brushes','sets','accessories'];
+  cats.forEach(cat => {
+    const grid = document.getElementById(`grid-${cat}`);
+    const count = document.getElementById(`count-${cat}`);
+    if (!grid) return;
+    const products = PRODUCTS.filter(p => p.cat.includes(cat));
+    grid.innerHTML = '';
+    products.forEach(p => grid.appendChild(buildCard(p)));
+    if (count) count.textContent = `${products.length} Products`;
+  });
+}
+
+function toggleSelect(id, checked) {
+  // sync all checkboxes with same id
+  document.querySelectorAll(`[id="chk_${id}"]`).forEach(el => el.checked = checked);
+  if (checked) selected.add(id); else selected.delete(id);
+  document.getElementById('selCount').textContent = selected.size;
+}
+
+function showTab(tab, el) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(`panel-${tab}`).classList.add('active');
+}
+
+function generatePDF() {
+  if (selected.size === 0) { alert('Select at least one product first.'); return; }
+  const skus = [...selected].join(',');
+  window.open(`masquerade-catalog-pdf.html?skus=${skus}`, '_blank');
+}
+
+renderGrids();
+</script>
+</body>
+</html>

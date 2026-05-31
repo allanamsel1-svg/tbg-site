@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Masquerade NYC — Product</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --charcoal: #1a1a1a;
+    --graphite: #2a2a2a;
+    --border: #2e2e2e;
+    --rose-gold: #C8956C;
+    --rose-gold-light: #e8b89a;
+    --white: #ffffff;
+    --off-white: #f5f0eb;
+    --silver: #888;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--black); color: var(--white); font-family: 'Montserrat', sans-serif; font-weight: 300; }
+
+  nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 48px; border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; background: rgba(10,10,10,0.96);
+    backdrop-filter: blur(12px); z-index: 100;
+  }
+  .nav-left { display: flex; align-items: center; gap: 32px; }
+  .back-link { color: var(--silver); text-decoration: none; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; transition: color 0.2s; }
+  .back-link:hover { color: var(--rose-gold); }
+  .nav-brand { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; letter-spacing: 0.22em; text-transform: uppercase; }
+  .nav-brand span { color: var(--rose-gold); }
+
+  .product-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: calc(100vh - 65px);
+  }
+
+  /* LEFT — image */
+  .product-visual {
+    background: #0e0e0e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px;
+    border-right: 1px solid var(--border);
+    position: sticky;
+    top: 65px;
+    height: calc(100vh - 65px);
+  }
+  .product-hero-img {
+    max-height: 420px;
+    max-width: 100%;
+    object-fit: contain;
+    display: block;
+  }
+  .thumb-strip {
+    display: flex;
+    gap: 12px;
+    margin-top: 32px;
+  }
+  .thumb {
+    width: 60px;
+    height: 60px;
+    background: var(--charcoal);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.2s, border-color 0.2s;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    color: var(--silver);
+    text-align: center;
+    padding: 4px;
+  }
+  .thumb.active { opacity: 1; border-color: var(--rose-gold); }
+
+  /* RIGHT — info */
+  .product-info { padding: 60px 56px; overflow-y: auto; }
+
+  .product-category {
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--rose-gold);
+    margin-bottom: 16px;
+  }
+  .product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 44px;
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+  .product-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--silver);
+    margin-bottom: 32px;
+  }
+
+  .divider { height: 1px; background: var(--border); margin: 28px 0; }
+
+  .price-row { display: flex; gap: 40px; margin-bottom: 32px; }
+  .price-block {}
+  .price-label { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--silver); margin-bottom: 6px; }
+  .price-value { font-size: 28px; color: var(--rose-gold); font-weight: 300; letter-spacing: 0.04em; }
+  .price-value.ws { font-size: 22px; color: var(--white); }
+
+  .section-label {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rose-gold);
+    margin-bottom: 16px;
+  }
+  .spec-table { width: 100%; border-collapse: collapse; margin-bottom: 8px; }
+  .spec-table tr { border-bottom: 1px solid var(--border); }
+  .spec-table tr:last-child { border-bottom: none; }
+  .spec-table td { padding: 10px 0; font-size: 12px; letter-spacing: 0.04em; }
+  .spec-table td:first-child { color: var(--silver); width: 45%; }
+  .spec-table td:last-child { color: var(--white); }
+
+  .cert-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+  .cert-chip {
+    border: 1px solid var(--rose-gold);
+    color: var(--rose-gold);
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+  }
+
+  .assets-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .asset-box {
+    background: var(--charcoal);
+    border: 1px solid var(--border);
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  .asset-box:hover { border-color: var(--rose-gold); }
+  .asset-icon { font-size: 20px; }
+  .asset-label { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--silver); }
+
+  .brand-link {
+    display: inline-block;
+    margin-top: 32px;
+    color: var(--silver);
+    text-decoration: none;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 3px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .brand-link:hover { color: var(--rose-gold); border-color: var(--rose-gold); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <a href="masquerade.html" class="back-link">← Store</a>
+    <div class="nav-brand"><svg width="28" height="18" viewBox="0 0 56 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;margin-right:10px;margin-bottom:2px"><path d="M28 8C22 8 17 4 10 4C5 4 1 7 1 12C1 19 6 24 13 24C17 24 20 22 22 19C23.5 21 25.5 22 28 22C30.5 22 32.5 21 34 19C36 22 39 24 43 24C50 24 55 19 55 12C55 7 51 4 46 4C39 4 34 8 28 8Z" stroke="#C8956C" stroke-width="2" fill="none"/><path d="M22 13C22 13 24 11 28 11C32 11 34 13 34 13" stroke="#C8956C" stroke-width="1.5" stroke-linecap="round"/><circle cx="13" cy="13" r="3" fill="#C8956C" opacity="0.3"/><circle cx="43" cy="13" r="3" fill="#C8956C" opacity="0.3"/></svg>MASQUERADE <span>NYC</span></div>
+  </div>
+</nav>
+
+<div class="product-wrap">
+  <div class="product-visual">
+    <img class="product-hero-img" id="heroImg" src="" alt="">
+    <div class="thumb-strip">
+      <div class="thumb active" onclick="setThumb(0)">Main</div>
+      <div class="thumb" onclick="setThumb(1)">Angle 2</div>
+      <div class="thumb" onclick="setThumb(2)">Detail</div>
+      <div class="thumb" onclick="setThumb(3)">Pkg</div>
+    </div>
+  </div>
+
+  <div class="product-info">
+    <div class="product-category" id="prodCategory"></div>
+    <div class="product-name" id="prodName"></div>
+    <div class="product-tagline" id="prodTagline"></div>
+
+    <div class="price-row">
+      <div class="price-block">
+        <div class="price-label">Retail MSRP</div>
+        <div class="price-value" id="prodMSRP"></div>
+      </div>
+      <div class="price-block">
+        <div class="price-label">Wholesale</div>
+        <div class="price-value ws" id="prodWS"></div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section-label">Product Details</div>
+    <table class="spec-table" id="specTable"></table>
+
+    <div class="divider"></div>
+
+    <div class="section-label">Certifications</div>
+    <div class="cert-chips" id="certChips"></div>
+
+    <div class="divider"></div>
+
+    <div class="section-label">Product Assets</div>
+    <div class="assets-grid">
+      <div class="asset-box"><div class="asset-icon">🖼</div><div class="asset-label">Product Images</div></div>
+      <div class="asset-box"><div class="asset-icon">📦</div><div class="asset-label">Packaging Files</div></div>
+      <div class="asset-box"><div class="asset-icon">▶</div><div class="asset-label">Product Video</div></div>
+      <div class="asset-box"><div class="asset-icon">📄</div><div class="asset-label">Sell Sheet</div></div>
+    </div>
+
+    <a href="masquerade-brand-attributes.html" class="brand-link">View Brand Attributes →</a>
+  </div>
+</div>
+
+<script>
+const PRODUCTS = {
+  matte_foundation:       { name:'Matte Foundation',        category:'Foundation',      tagline:'Full coverage, matte finish',         msrp:38, specs:{'Finish':'Matte','Coverage':'Full','Formula':'Liquid','Skin Type':'All','SPF':'None','Volume':'30ml'}, certs:['Cruelty Free','Paraben Free','Clean Beauty'] },
+  serum_foundation:       { name:'Serum Foundation',        category:'Foundation',      tagline:'Buildable coverage, natural finish',  msrp:42, specs:{'Finish':'Natural','Coverage':'Buildable','Formula':'Serum-infused','Skin Type':'Dry / Normal','Volume':'30ml'}, certs:['Cruelty Free','Vegan','Paraben Free'] },
+  tinted_moisturizer:     { name:'Tinted Moisturizer',      category:'Foundation',      tagline:'Sheer coverage, hydrating',           msrp:32, specs:{'Finish':'Dewy','Coverage':'Sheer','Formula':'Moisturizer','Skin Type':'All','SPF':'15','Volume':'40ml'}, certs:['Cruelty Free','Clean Beauty'] },
+  concealer:              { name:'Concealer',                category:'Concealer',       tagline:'Full coverage, creamy',               msrp:28, specs:{'Finish':'Matte','Coverage':'Full','Formula':'Cream','Skin Type':'All','Volume':'5ml'}, certs:['Cruelty Free','Paraben Free'] },
+  liquid_concealer:       { name:'Liquid Concealer',         category:'Concealer',       tagline:'Buildable coverage, smooth finish',   msrp:30, specs:{'Finish':'Natural','Coverage':'Buildable','Formula':'Liquid','Volume':'6ml'}, certs:['Cruelty Free','Clean Beauty'] },
+  setting_powder:         { name:'Setting Powder',           category:'Setting',         tagline:'Sets makeup, flawless finish',        msrp:34, specs:{'Finish':'Matte','Type':'Loose Powder','Coverage':'Sheer','Volume':'10g'}, certs:['Cruelty Free','Vegan'] },
+  setting_spray:          { name:'Setting Spray',            category:'Setting',         tagline:'Locks makeup all day',                msrp:26, specs:{'Hold':'Long-lasting','Finish':'Natural','Volume':'100ml'}, certs:['Cruelty Free','Paraben Free'] },
+  bronzer:                { name:'Bronzer',                  category:'Face Makeup',     tagline:'Adds warmth, natural sun-kissed',     msrp:32, specs:{'Finish':'Satin','Type':'Pressed Powder','Pan Size':'Full'}, certs:['Cruelty Free','Vegan'] },
+  blush:                  { name:'Blush',                    category:'Face Makeup',     tagline:'Healthy flush, buildable color',      msrp:28, specs:{'Finish':'Satin','Type':'Pressed Powder'}, certs:['Cruelty Free','Vegan','Clean Beauty'] },
+  highlighter:            { name:'Highlighter',              category:'Face Makeup',     tagline:'Radiant glow, luminous finish',       msrp:30, specs:{'Finish':'Luminous','Type':'Pressed Powder'}, certs:['Cruelty Free','Vegan'] },
+  contour_kit:            { name:'Contour Kit',              category:'Face Makeup',     tagline:'Define features, sculpt & shade',     msrp:38, specs:{'Shades':'3 Pan','Type':'Pressed Powder','Finish':'Matte'}, certs:['Cruelty Free','Paraben Free'] },
+  green_color_corrector:  { name:'Green Color Corrector',    category:'Color Correctors',tagline:'Neutralizes redness, evens tone',     msrp:22, specs:{'Color':'Green','Finish':'Matte','Formula':'Cream'}, certs:['Cruelty Free','Clean Beauty'] },
+  peach_color_corrector:  { name:'Peach Color Corrector',    category:'Color Correctors',tagline:'Brightens dark circles, evens tone',  msrp:22, specs:{'Color':'Peach','Finish':'Natural','Formula':'Cream'}, certs:['Cruelty Free','Clean Beauty'] },
+  lavender_color_corrector:{name:'Lavender Color Corrector', category:'Color Correctors',tagline:'Neutralizes sallowness, brightens',   msrp:22, specs:{'Color':'Lavender','Finish':'Natural','Formula':'Cream'}, certs:['Cruelty Free','Clean Beauty'] },
+  highlight_palette:      { name:'Highlight Palette',        category:'Face Palettes',   tagline:'Multi glow, luminous',                msrp:44, specs:{'Shades':'4 Pan','Finish':'Luminous'}, certs:['Cruelty Free','Vegan'] },
+  blush_palette:          { name:'Blush Palette',            category:'Face Palettes',   tagline:'Multiple shades, versatile',          msrp:40, specs:{'Shades':'4 Pan','Finish':'Satin'}, certs:['Cruelty Free','Vegan'] },
+  contour_palette:        { name:'Contour Palette',          category:'Face Palettes',   tagline:'Sculpt & define, professional',       msrp:46, specs:{'Shades':'4 Pan','Finish':'Matte / Satin'}, certs:['Cruelty Free','Paraben Free'] },
+  eyeshadow_palette:      { name:'Eyeshadow Palette',        category:'Palettes',        tagline:'Rich pigment, blendable shades',      msrp:52, specs:{'Shades':'16 Pan','Finish':'Matte / Shimmer','Pan Size':'Full'}, certs:['Cruelty Free','Paraben Free','Clean Beauty'] },
+  hydrating_primer:       { name:'Hydrating Primer',         category:'Primers',         tagline:'Hydrates & smooths, natural glow',   msrp:30, specs:{'Finish':'Dewy','Skin Type':'Dry / Normal','Volume':'30ml'}, certs:['Cruelty Free','Paraben Free'] },
+  mattifying_primer:      { name:'Mattifying Primer',        category:'Primers',         tagline:'Controls shine, complete face',       msrp:30, specs:{'Finish':'Matte','Skin Type':'Oily / Combo','Volume':'30ml'}, certs:['Cruelty Free','Paraben Free'] },
+  travel_foundation:      { name:'Travel Foundation',        category:'Mini / Travel',   tagline:'Perfect size, on the go',             msrp:24, specs:{'Volume':'15ml','Finish':'Natural','Coverage':'Buildable'}, certs:['Cruelty Free'] },
+  eyeshadow_primer:       { name:'Eyeshadow Primer',         category:'Eye Makeup',      tagline:'Enhances color, all day wear',        msrp:22, specs:{'Finish':'Natural','Hold':'All Day'}, certs:['Cruelty Free','Paraben Free'] },
+  cream_eyeshadow:        { name:'Cream Eyeshadow',          category:'Eye Makeup',      tagline:'Rich color, crease-proof',            msrp:24, specs:{'Finish':'Satin','Formula':'Cream','Wear':'Long-lasting'}, certs:['Cruelty Free','Vegan'] },
+  single_eyeshadow:       { name:'Single Eyeshadow',         category:'Eye Makeup',      tagline:'Vibrant color, blendable',            msrp:18, specs:{'Finish':'Matte / Shimmer','Type':'Pressed Powder'}, certs:['Cruelty Free','Vegan'] },
+  glitter_eyeshadow:      { name:'Glitter Eyeshadow',        category:'Eye Makeup',      tagline:'Intense sparkle, long lasting',       msrp:20, specs:{'Finish':'Glitter','Type':'Pressed'}, certs:['Cruelty Free'] },
+  eyebrow_powder:         { name:'Eyebrow Powder',           category:'Brow',            tagline:'Fill & define, natural look',         msrp:20, specs:{'Type':'Pressed Powder','Finish':'Natural'}, certs:['Cruelty Free','Vegan'] },
+  brow_pomade:            { name:'Brow Pomade',              category:'Brow',            tagline:'Sculpt & define, waterproof',         msrp:22, specs:{'Formula':'Pomade','Finish':'Natural','Waterproof':'Yes'}, certs:['Cruelty Free','Paraben Free'] },
+  brow_wax:               { name:'Brow Wax',                 category:'Brow',            tagline:'Sets brows all day',                  msrp:18, specs:{'Formula':'Wax','Hold':'Strong','Finish':'Natural'}, certs:['Cruelty Free'] },
+  mascara:                { name:'Mascara',                  category:'Mascara & Eyeliner', tagline:'Volumizing, long wear',            msrp:28, specs:{'Effect':'Volumizing','Wear':'Long-lasting','Waterproof':'No'}, certs:['Cruelty Free','Paraben Free'] },
+  eyelash_curler:         { name:'Eyelash Curler',           category:'Tools',           tagline:'Curls lashes effortlessly',           msrp:18, specs:{'Material':'Metal / Rubber','Type':'Full Lash'}, certs:['Made in USA'] },
+  lipstick:               { name:'Lipstick',                 category:'Lip Collection',  tagline:'Creamy color, satin finish',          msrp:26, specs:{'Finish':'Satin','Formula':'Cream','Weight':'3.5g'}, certs:['Cruelty Free','Paraben Free'] },
+  lip_liner:              { name:'Lip Liner',                category:'Lip Collection',  tagline:'Define & shape, long lasting',        msrp:18, specs:{'Type':'Pencil','Finish':'Matte','Wear':'Long-lasting'}, certs:['Cruelty Free','Vegan'] },
+  lip_balm:               { name:'Lip Balm',                 category:'Lip Care',        tagline:'Hydrates & protects, softens lips',   msrp:16, specs:{'Formula':'Balm','SPF':'None','Volume':'4g'}, certs:['Cruelty Free','Vegan','Clean Beauty'] },
+  lip_treatment:          { name:'Lip Treatment',            category:'Lip Care',        tagline:'Repairs & protects, nourishes',       msrp:22, specs:{'Formula':'Serum','Volume':'10ml'}, certs:['Cruelty Free','Paraben Free','Clean Beauty'] },
+  lip_mask:               { name:'Lip Mask',                 category:'Lip Care',        tagline:'Deep hydration overnight',            msrp:24, specs:{'Type':'Overnight Mask','Volume':'12g'}, certs:['Cruelty Free','Vegan','Clean Beauty'] },
+  lip_collection_set:     { name:'Lip Collection Set',       category:'Lip Sets',        tagline:'Multiple finishes, versatile',        msrp:58, specs:{'Pieces':'5 pc','Includes':'Lipstick, Liner, Gloss, Balm, Mask'}, certs:['Cruelty Free','Paraben Free'] },
+  nude_lip_set:           { name:'Nude Lip Set',             category:'Lip Sets',        tagline:'Perfect nude shades, everyday',       msrp:48, specs:{'Pieces':'3 pc','Shades':'Nude tones'}, certs:['Cruelty Free','Vegan'] },
+  bold_lip_set:           { name:'Bold Lip Set',             category:'Lip Sets',        tagline:'Statement shades, high impact',       msrp:48, specs:{'Pieces':'3 pc','Shades':'Bold tones'}, certs:['Cruelty Free','Paraben Free'] },
+  lip_care_set:           { name:'Lip Care Set',             category:'Lip Care',        tagline:'Complete lip care routine',           msrp:42, specs:{'Pieces':'3 pc','Includes':'Balm, Treatment, Mask'}, certs:['Cruelty Free','Vegan','Clean Beauty'] },
+  cleanser:               { name:'Cleanser',                 category:'Skincare',        tagline:'Gently cleanses, refreshing',         msrp:34, specs:{'Type':'Gel Cleanser','Skin Type':'All','Volume':'150ml'}, certs:['Cruelty Free','Vegan','Paraben Free','Clean Beauty'] },
+  serum:                  { name:'Serum',                    category:'Skincare',        tagline:'Hydrating, nourishing',               msrp:48, specs:{'Type':'Hydrating Serum','Volume':'30ml','Key Ingredient':'Hyaluronic Acid'}, certs:['Cruelty Free','Vegan','Clean Beauty'] },
+  moisturizer:            { name:'Moisturizer',              category:'Skincare',        tagline:'Hydrating, softens skin',             msrp:42, specs:{'Type':'Day Moisturizer','Skin Type':'All','Volume':'50ml'}, certs:['Cruelty Free','Vegan','Paraben Free'] },
+  powder_brush:           { name:'Powder Brush',             category:'Brushes',         tagline:'Sets & blends powder',                msrp:28, specs:{'Bristles':'Synthetic','Handle':'Rose Gold','Use':'Face'}, certs:['Cruelty Free'] },
+  makeup_sponge:          { name:'Makeup Sponge',            category:'Tools',           tagline:'Blend foundation seamlessly',         msrp:16, specs:{'Material':'Latex-free foam','Shape':'Teardrop'}, certs:['Cruelty Free','Vegan'] },
+  blending_sponge:        { name:'Blending Sponge',          category:'Tools',           tagline:'Precision blending, smooth finish',   msrp:18, specs:{'Material':'Latex-free foam','Shape':'Oval'}, certs:['Cruelty Free','Vegan'] },
+  complete_brush_set:     { name:'Complete Brush Set',       category:'Brush Sets',      tagline:'Full collection, face & eyes',        msrp:68, specs:{'Pieces':'10 pc','Bristles':'Synthetic','Includes':'Full face & eye set'}, certs:['Cruelty Free','Vegan'] },
+  complete_brush_set_pro: { name:'Complete Brush Set Pro',   category:'Brush Sets',      tagline:'Professional grade, full collection', msrp:88, specs:{'Pieces':'15 pc','Bristles':'Premium Synthetic'}, certs:['Cruelty Free','Vegan'] },
+  face_brush_set:         { name:'Face Brush Set',           category:'Brush Sets',      tagline:'Essential face brushes',              msrp:52, specs:{'Pieces':'5 pc','Bristles':'Synthetic'}, certs:['Cruelty Free','Vegan'] },
+  eye_brush_set:          { name:'Eye Brush Set',            category:'Brush Sets',      tagline:'Essential eye brushes',               msrp:48, specs:{'Pieces':'5 pc','Bristles':'Synthetic'}, certs:['Cruelty Free','Vegan'] },
+  professional_brush_set: { name:'Professional Brush Set',   category:'Professional',    tagline:'Pro quality, long wear',              msrp:96, specs:{'Pieces':'12 pc','Bristles':'Premium Synthetic','Grade':'Professional'}, certs:['Cruelty Free','Vegan'] },
+  travel_brush_set:       { name:'Travel Brush Set',         category:'Mini / Travel',   tagline:'Compact set, travel friendly',        msrp:38, specs:{'Pieces':'5 pc','Bristles':'Synthetic','Includes':'Travel case'}, certs:['Cruelty Free'] },
+  value_brush_set:        { name:'Value Brush Set',          category:'Brush Sets',      tagline:'Complete value collection',           msrp:44, specs:{'Pieces':'8 pc','Bristles':'Synthetic'}, certs:['Cruelty Free','Vegan'] },
+  brush_set_deluxe:       { name:'Deluxe Brush Set',         category:'Brush Sets',      tagline:'Premium selection, all brushes',      msrp:78, specs:{'Pieces':'12 pc','Bristles':'Premium Synthetic'}, certs:['Cruelty Free','Vegan'] },
+  skincare_essentials_set:{ name:'Skincare Essentials Set',  category:'Skincare Sets',   tagline:'Daily skincare essentials',           msrp:68, specs:{'Pieces':'3 pc','Includes':'Cleanser, Serum, Moisturizer'}, certs:['Cruelty Free','Vegan','Clean Beauty'] },
+  hydrating_skincare_set: { name:'Hydrating Skincare Set',   category:'Skincare Sets',   tagline:'Hydrate & glow, complete care',       msrp:72, specs:{'Pieces':'4 pc','Includes':'Hydrating full routine'}, certs:['Cruelty Free','Vegan','Clean Beauty'] },
+  skincare_set:           { name:'Skincare Set',             category:'Skincare Sets',   tagline:'Complete skincare routine',           msrp:62, specs:{'Pieces':'3 pc','Includes':'Full routine'}, certs:['Cruelty Free','Vegan'] },
+  skincare_duo:           { name:'Skincare Duo',             category:'Skincare Sets',   tagline:'Essential two-step routine',          msrp:48, specs:{'Pieces':'2 pc','Includes':'Cleanser + Moisturizer'}, certs:['Cruelty Free','Vegan'] },
+  luxury_gift_set:        { name:'Luxury Gift Set',          category:'Gift Sets',       tagline:'Premium collection, luxury packaging',msrp:120,specs:{'Pieces':'8 pc','Packaging':'Luxury box','Includes':'Full face & lip'}, certs:['Cruelty Free','Paraben Free'] },
+  makeup_gift_set:        { name:'Makeup Gift Set',          category:'Gift Sets',       tagline:'Perfect gift, beautifully packaged',  msrp:88, specs:{'Pieces':'6 pc','Packaging':'Gift box'}, certs:['Cruelty Free','Paraben Free'] },
+  beauty_essentials_pack: { name:'Beauty Essentials Pack',   category:'Value Packs',     tagline:'Must have essentials',                msrp:64, specs:{'Pieces':'5 pc','Includes':'Full face essentials'}, certs:['Cruelty Free'] },
+  face_makeup_pack:       { name:'Face Makeup Pack',         category:'Value Packs',     tagline:'Complete face collection',            msrp:72, specs:{'Pieces':'6 pc','Includes':'Foundation, Blush, Bronzer, Highlighter'}, certs:['Cruelty Free','Paraben Free'] },
+  eye_makeup_pack:        { name:'Eye Makeup Pack',          category:'Value Packs',     tagline:'All eye essentials in one',           msrp:68, specs:{'Pieces':'6 pc','Includes':'Full eye collection'}, certs:['Cruelty Free','Paraben Free'] },
+  mini_lip_set:           { name:'Mini Lip Set',             category:'Mini / Travel',   tagline:'Mini shades, complete look',          msrp:36, specs:{'Pieces':'3 pc','Size':'Travel / Mini'}, certs:['Cruelty Free'] },
+  makeup_bag:             { name:'Makeup Bag',               category:'Accessories',     tagline:'Stylish & spacious, travel friendly', msrp:38, specs:{'Material':'Vegan leather','Size':'Medium','Closure':'Zip'}, certs:['Vegan'] },
+  headband:               { name:'Headband',                 category:'Accessories',     tagline:'Comfortable, keeps hair back',        msrp:14, specs:{'Material':'Soft terry','One Size':'Yes'}, certs:['Vegan'] },
+  powder_refill:          { name:'Powder Refill',            category:'Refills',         tagline:'Refill & save, eco friendly',         msrp:22, specs:{'Type':'Refill Pan','Sustainability':'Refillable packaging'}, certs:['Recyclable','Clean Beauty'] },
+  counter_display:        { name:'Counter Display',          category:'Display Units',   tagline:'Perfect for retail, attractive display',msrp:180,specs:{'Type':'Countertop Display','Capacity':'Full line','Material':'Acrylic + Metal'}, certs:['Made in USA'] },
+  professional_palettes:  { name:'Professional Palettes',    category:'Professional',    tagline:'Designed for pros, high pigment',     msrp:110,specs:{'Shades':'Multiple','Grade':'Professional','Pigment':'High-performance'}, certs:['Cruelty Free','Paraben Free'] },
+};
+
+const sku = new URLSearchParams(window.location.search).get('sku') || 'matte_foundation';
+const p = PRODUCTS[sku] || PRODUCTS['matte_foundation'];
+
+document.getElementById('heroImg').src = `images/masquerade/${sku}.png`;
+document.getElementById('heroImg').alt = p.name;
+document.getElementById('prodCategory').textContent = p.category;
+document.getElementById('prodName').textContent = p.name;
+document.getElementById('prodTagline').textContent = p.tagline;
+document.getElementById('prodMSRP').textContent = `$${p.msrp.toFixed(2)}`;
+document.getElementById('prodWS').textContent = `$${(p.msrp * 0.5).toFixed(2)}`;
+document.title = `Masquerade NYC — ${p.name}`;
+
+const specTable = document.getElementById('specTable');
+Object.entries(p.specs).forEach(([k, v]) => {
+  const tr = document.createElement('tr');
+  tr.innerHTML = `<td>${k}</td><td>${v}</td>`;
+  specTable.appendChild(tr);
+});
+
+const certChips = document.getElementById('certChips');
+p.certs.forEach(c => {
+  const span = document.createElement('span');
+  span.className = 'cert-chip';
+  span.textContent = c;
+  certChips.appendChild(span);
+});
+
+function setThumb(i) {
+  document.querySelectorAll('.thumb').forEach((t, idx) => t.classList.toggle('active', idx === i));
+}
+</script>
+</body>
+</html>
