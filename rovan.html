@@ -423,13 +423,14 @@
   <button class="tab" data-tab="pre-shave" onclick="switchTab('pre-shave', this)">Pre-Shave</button>
   <button class="tab" data-tab="body-care" onclick="switchTab('body-care', this)">Body Care</button>
   <button class="tab" data-tab="gift-sets" onclick="switchTab('gift-sets', this)">Gift Sets</button>
+  <button class="tab" data-tab="scents" onclick="switchTab('scents', this)">Scents</button>
   <button class="tab" data-tab="brand-attributes" onclick="switchTab('brand-attributes', this)">Brand Attributes</button>
 </div>
 
 <div class="store-body">
   <div class="product-grid" id="productGrid"></div>
   <div class="brand-attr-panel" id="brandAttrPanel">
-    <img src="images/rovan/brandattributesrovan.png" alt="Rovan Brand Attributes">
+    <img src="images/brands/brandrovan.png" alt="Rovan Brand Attributes">
   </div>
 </div>
 
@@ -455,10 +456,10 @@ const PRODUCTS = [
   { id: 'mini-travel-razor', name: 'Mini Travel Razor', category: 'hero-razors', categoryLabel: 'Hero Razors', msrp: 12.99, image: 'images/rovan/mini-travel-razor.png', slug: 'mini-travel-razor' },
 
   // CARTRIDGE REFILLS
-  { id: 'cartridge-4pack', name: 'Cartridge Refills 4-Pack', category: 'cartridge-refills', categoryLabel: 'Cartridge Refills', msrp: 12.99, image: 'images/rovan/cartridge-4pack.png', slug: 'cartridge-4pack' },
-  { id: 'cartridge-8pack', name: 'Cartridge Refills 8-Pack', category: 'cartridge-refills', categoryLabel: 'Cartridge Refills', msrp: 21.99, image: 'images/rovan/cartridge-8pack.png', slug: 'cartridge-8pack' },
-  { id: 'cartridge-12pack', name: 'Cartridge Refills 12-Pack', category: 'cartridge-refills', categoryLabel: 'Cartridge Refills', msrp: 29.99, image: 'images/rovan/cartridge-12pack.png', slug: 'cartridge-12pack' },
-  { id: 'cartridge-24pack', name: 'Cartridge Refills 24-Pack', category: 'cartridge-refills', categoryLabel: 'Cartridge Refills', msrp: 49.99, image: 'images/rovan/cartridge-24pack.png', slug: 'cartridge-24pack' },
+  { id: 'cartridge-4pack', name: 'Cartridge Refills 4-Pack', category: 'cartridge-refills', categoryLabel: 'Cartridge Refills', msrp: 12.99, image: 'images/rovan/4-cartridge-pack.png', slug: 'cartridge-4pack' },
+  { id: 'cartridge-8pack', name: 'Cartridge Refills 8-Pack', category: 'cartridge-refills', categoryLabel: 'Cartridge Refills', msrp: 21.99, image: 'images/rovan/8-cartridge-pack.png', slug: 'cartridge-8pack' },
+  { id: 'cartridge-12pack', name: 'Cartridge Refills 12-Pack', category: 'cartridge-refills', categoryLabel: 'Cartridge Refills', msrp: 29.99, image: 'images/rovan/12-cartridge-pack.png', slug: 'cartridge-12pack' },
+  { id: 'cartridge-24pack', name: 'Cartridge Refills 24-Pack', category: 'cartridge-refills', categoryLabel: 'Cartridge Refills', msrp: 49.99, image: 'images/rovan/24-cartridge-pack.png', slug: 'cartridge-24pack' },
 
   // SHAVE GELS
   { id: 'shave-gel', name: 'Shave Gel', category: 'shave-gels', categoryLabel: 'Shave Gels', msrp: 8.99, image: 'images/rovan/shave-gel.png', slug: 'shave-gel' },
@@ -466,17 +467,20 @@ const PRODUCTS = [
   { id: 'cooling-shave-gel', name: 'Cooling Shave Gel', category: 'shave-gels', categoryLabel: 'Shave Gels', msrp: 9.99, image: 'images/rovan/cooling-shave-gel.png', slug: 'cooling-shave-gel' },
   { id: 'hydrating-shave-gel', name: 'Hydrating Shave Gel', category: 'shave-gels', categoryLabel: 'Shave Gels', msrp: 9.99, image: 'images/rovan/hydrating-shave-gel.png', slug: 'hydrating-shave-gel' },
   { id: 'shave-gel-twinpack', name: 'Shave Gel Twin Pack', category: 'shave-gels', categoryLabel: 'Shave Gels', msrp: 16.99, image: 'images/rovan/shave-gel-twinpack.png', slug: 'shave-gel-twinpack' },
+  { id: 'shave-gel-1l', name: 'Shave Gel 1L', category: 'shave-gels', categoryLabel: 'Shave Gels', msrp: 24.99, image: 'images/rovan/shave-gel-1l.png', slug: 'shave-gel-1l' },
 
   // SHAVE CREAMS
   { id: 'shave-cream', name: 'Shave Cream', category: 'shave-creams', categoryLabel: 'Shave Creams', msrp: 8.99, image: 'images/rovan/shave-cream.png', slug: 'shave-cream' },
   { id: 'sensitive-shave-cream', name: 'Sensitive Shave Cream', category: 'shave-creams', categoryLabel: 'Shave Creams', msrp: 9.99, image: 'images/rovan/sensitive-shave-cream.png', slug: 'sensitive-shave-cream' },
   { id: 'moisturizing-shave-cream', name: 'Moisturizing Shave Cream', category: 'shave-creams', categoryLabel: 'Shave Creams', msrp: 9.99, image: 'images/rovan/moisturizing-shave-cream.png', slug: 'moisturizing-shave-cream' },
+  { id: 'shave-cream-1l', name: 'Shave Cream 1L', category: 'shave-creams', categoryLabel: 'Shave Creams', msrp: 24.99, image: 'images/rovan/shave-cream-1l.png', slug: 'shave-cream-1l' },
 
   // AFTER SHAVE
-  { id: 'aftershave-balm', name: 'After Shave Balm', category: 'after-shave', categoryLabel: 'After Shave', msrp: 11.99, image: 'images/rovan/aftershave-balm.png', slug: 'aftershave-balm' },
-  { id: 'aftershave-soothing-gel', name: 'After Shave Soothing Gel', category: 'after-shave', categoryLabel: 'After Shave', msrp: 11.99, image: 'images/rovan/aftershave-soothing-gel.png', slug: 'aftershave-soothing-gel' },
-  { id: 'aftershave-lotion', name: 'After Shave Lotion', category: 'after-shave', categoryLabel: 'After Shave', msrp: 11.99, image: 'images/rovan/aftershave-lotion.png', slug: 'aftershave-lotion' },
+  { id: 'aftershave-balm', name: 'After Shave Balm', category: 'after-shave', categoryLabel: 'After Shave', msrp: 11.99, image: 'images/rovan/after-shave-balm.png', slug: 'aftershave-balm' },
+  { id: 'aftershave-soothing-gel', name: 'After Shave Soothing Gel', category: 'after-shave', categoryLabel: 'After Shave', msrp: 11.99, image: 'images/rovan/after-shave-soothing-gel.png', slug: 'aftershave-soothing-gel' },
+  { id: 'aftershave-lotion', name: 'After Shave Lotion', category: 'after-shave', categoryLabel: 'After Shave', msrp: 11.99, image: 'images/rovan/after-shave-lotion.png', slug: 'aftershave-lotion' },
   { id: 'aftershave-duo', name: 'After Shave Duo', category: 'after-shave', categoryLabel: 'After Shave', msrp: 19.99, image: 'images/rovan/aftershave-duo.png', slug: 'aftershave-duo' },
+  { id: 'aftershave-balm-1l', name: 'After Shave Balm 1L', category: 'after-shave', categoryLabel: 'After Shave', msrp: 29.99, image: 'images/rovan/after-shave-balm-1l.png', slug: 'aftershave-balm-1l' },
 
   // FACE CARE
   { id: 'moisturizer', name: 'Moisturizer', category: 'face-care', categoryLabel: 'Face Care', msrp: 14.99, image: 'images/rovan/moisturizer.png', slug: 'moisturizer' },
@@ -489,6 +493,7 @@ const PRODUCTS = [
 
   // BODY CARE
   { id: 'body-wash', name: 'Body Wash', category: 'body-care', categoryLabel: 'Body Care', msrp: 10.99, image: 'images/rovan/body-wash.png', slug: 'body-wash' },
+  { id: 'body-wash-1l', name: 'Body Wash 1L', category: 'body-care', categoryLabel: 'Body Care', msrp: 19.99, image: 'images/rovan/body-wash-1l.png', slug: 'body-wash-1l' },
   { id: 'body-lotion', name: 'Body Lotion', category: 'body-care', categoryLabel: 'Body Care', msrp: 10.99, image: 'images/rovan/body-lotion.png', slug: 'body-lotion' },
   { id: 'deodorant', name: 'Deodorant', category: 'body-care', categoryLabel: 'Body Care', msrp: 8.99, image: 'images/rovan/deodorant.png', slug: 'deodorant' },
 
@@ -501,6 +506,17 @@ const PRODUCTS = [
   { id: 'travel-gift-set', name: 'Travel Gift Set', category: 'gift-sets', categoryLabel: 'Gift Sets', msrp: 44.99, image: 'images/rovan/travel-gift-set.png', slug: 'travel-gift-set' },
   { id: 'beard-care-duo', name: 'Beard Care Duo', category: 'gift-sets', categoryLabel: 'Gift Sets', msrp: 24.99, image: 'images/rovan/beard-care-duo.png', slug: 'beard-care-duo' },
   { id: 'complete-care-pack', name: 'Complete Care Pack', category: 'gift-sets', categoryLabel: 'Gift Sets', msrp: 29.99, image: 'images/rovan/complete-care-pack.png', slug: 'complete-care-pack' },
+  { id: 'premium-razor-set', name: 'Premium Razor Set', category: 'gift-sets', categoryLabel: 'Gift Sets', msrp: 39.99, image: 'images/rovan/premium-razor-set.png', slug: 'premium-razor-set' },
+  { id: 'premium-care-set', name: 'Premium Care Set', category: 'gift-sets', categoryLabel: 'Gift Sets', msrp: 49.99, image: 'images/rovan/premium-care-set.png', slug: 'premium-care-set' },
+  { id: 'razor-plus-2-refills', name: 'Razor + 2 Refills', category: 'gift-sets', categoryLabel: 'Gift Sets', msrp: 19.99, image: 'images/rovan/razor-plus-2-refills.png', slug: 'razor-plus-2-refills' },
+  { id: 'razor-plus-4-refills', name: 'Razor + 4 Refills', category: 'gift-sets', categoryLabel: 'Gift Sets', msrp: 24.99, image: 'images/rovan/razor-plus-4-refills.png', slug: 'razor-plus-4-refills' },
+  { id: 'razor-plus-8-refills', name: 'Razor + 8 Refills', category: 'gift-sets', categoryLabel: 'Gift Sets', msrp: 34.99, image: 'images/rovan/razor-plus-8-refills.png', slug: 'razor-plus-8-refills' },
+
+  // SCENTS
+  { id: 'deep-ocean', name: 'Deep Ocean', category: 'scents', categoryLabel: 'Scents', msrp: 14.99, image: 'images/rovan/deep-ocean.png', slug: 'deep-ocean' },
+  { id: 'forest-mist', name: 'Forest Mist', category: 'scents', categoryLabel: 'Scents', msrp: 14.99, image: 'images/rovan/forest-mist.png', slug: 'forest-mist' },
+  { id: 'sandalwood', name: 'Sandalwood', category: 'scents', categoryLabel: 'Scents', msrp: 14.99, image: 'images/rovan/sandalwood.png', slug: 'sandalwood' },
+  { id: 'citrus-zest', name: 'Citrus Zest', category: 'scents', categoryLabel: 'Scents', msrp: 14.99, image: 'images/rovan/citrus-zest.png', slug: 'citrus-zest' },
 ];
 
 let currentTab = 'all';
