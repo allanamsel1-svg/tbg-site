@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — TBG Sourcing Inc.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg:#0B0F1A; --bg-card:#0f172a; --accent:#7B2DFF; --accent-hover:#6620e0; --text:#e2e8f0; --muted:#94a3b8; --border:#1e293b; --green:#2ecc71; }
+    body { background: var(--bg); color: var(--text); font-family: 'Poppins', sans-serif; line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+
+    .site-nav { position: sticky; top: 0; z-index: 100; background: rgba(11,15,26,.88); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+    .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { font-weight: 700; font-size: 16px; letter-spacing: .02em; }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { font-size: 14px; color: var(--muted); transition: color .15s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta { background: var(--accent); color: #fff !important; padding: 7px 18px; border-radius: 8px; font-weight: 600; font-size: 13px; }
+    .nav-cta:hover { background: var(--accent-hover) !important; }
+    .nav-hamburger { display: none; background: none; border: none; color: var(--muted); font-size: 22px; cursor: pointer; }
+    @media (max-width: 600px) { .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--bg-card); border-bottom: 1px solid var(--border); padding: 1rem 2rem; gap: 1rem; } .nav-links.open { display: flex; } .nav-hamburger { display: block; } }
+
+    .page-hero { border-bottom: 1px solid var(--border); padding: 72px 2rem 60px; }
+    .page-hero-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label { font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+    h1 { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; margin-bottom: 16px; }
+    .hero-sub { font-size: 17px; color: var(--muted); max-width: 620px; line-height: 1.7; }
+
+    .content { max-width: 1100px; margin: 0 auto; padding: 72px 2rem; }
+    .content-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 60px; }
+    @media (max-width: 768px) { .content-grid { grid-template-columns: 1fr; gap: 40px; } }
+
+    .prose-block { margin-bottom: 48px; }
+    .prose-block h2 { font-size: 18px; font-weight: 700; color: var(--accent); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+    .prose-block h2::before { content: ''; display: block; width: 3px; height: 18px; background: var(--accent); border-radius: 2px; }
+    .prose-block p { font-size: 15px; color: var(--muted); line-height: 1.8; }
+
+    .sidebar-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 28px; margin-bottom: 20px; }
+    .sidebar-card h3 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: 14px; }
+    .sidebar-card p { font-size: 14px; color: var(--text); line-height: 1.6; }
+    .sidebar-card a { color: var(--accent); }
+    .contact-row { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--muted); margin-bottom: 10px; }
+    .contact-row:last-child { margin-bottom: 0; }
+    .contact-row a { color: var(--accent); }
+
+    .site-footer { border-top: 1px solid var(--border); padding: 48px 2rem; text-align: center; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; }
+    .footer-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin: 16px 0; }
+    .footer-links a { font-size: 13px; color: var(--muted); transition: color .15s; }
+    .footer-links a:hover { color: var(--text); }
+    .footer-copy { font-size: 13px; color: var(--muted); }
+    .footer-tagline { margin-top: 12px; font-size: 12px; color: #3d4a5c; }
+    .footer-tagline a { color: var(--accent); opacity: .7; }
+  </style>
+</head>
+<body>
+
+  <header class="site-nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">TBG <span>Sourcing</span> Inc.</a>
+      <button class="nav-hamburger" id="nav-toggle" aria-label="Menu">☰</button>
+      <nav class="nav-links" id="nav-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/contact.html" class="nav-cta">Get in Touch</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <p class="section-label">About Us</p>
+      <h1>About TBG Sourcing Inc.</h1>
+      <p class="hero-sub">We're a technology company with roots in the consumer goods industry — we build the software we always needed.</p>
+    </div>
+  </section>
+
+  <div class="content">
+    <div class="content-grid">
+
+      <!-- Main prose -->
+      <div style="grid-column: 2 / 3; order: 1;">
+        <div class="prose-block">
+          <h2>The Company</h2>
+          <p>TBG Sourcing Inc. is a technology company headquartered in Brooklyn, New York. We develop sourcing intelligence software for companies that source, manufacture, and distribute consumer goods — with a focus on the health, beauty, and personal care categories that define modern retail.</p>
+        </div>
+        <div class="prose-block">
+          <h2>Our Story</h2>
+          <p>TBG Sourcing was founded with a simple premise: the consumer goods industry deserved better software. For decades, sourcing teams have relied on spreadsheets, email threads, and disconnected systems to manage relationships with hundreds of factories, track thousands of SKUs, and coordinate the complex logistics of getting product from a factory floor in China to a retail shelf in the United States.</p>
+          <p style="margin-top:14px">We knew there was a better way — because we had lived the problem firsthand. So we built Aletheia.</p>
+        </div>
+        <div class="prose-block">
+          <h2>Our Platform</h2>
+          <p>Today, TBG Sourcing develops and maintains Aletheia, a multi-tenant SaaS platform purpose-built for the consumer goods sourcing industry. Aletheia is used by importers, distributors, and brand owners who need a single system to manage their entire supply chain — from the first factory conversation to the final customer shipment.</p>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div style="grid-column: 1 / 2; order: 0;">
+        <div class="sidebar-card">
+          <h3>Location</h3>
+          <div class="contact-row">📍 Brooklyn, New York</div>
+          <div class="contact-row">✉ <a href="mailto:allan@tbgsourcing.net">allan@tbgsourcing.net</a></div>
+          <div class="contact-row">🌐 <a href="https://getaletheia.ai" target="_blank" rel="noopener">getaletheia.ai</a></div>
+        </div>
+        <div class="sidebar-card">
+          <h3>What We Build</h3>
+          <p>Aletheia — sourcing intelligence platform for consumer goods importers &amp; distributors.</p>
+        </div>
+        <div class="sidebar-card">
+          <h3>Industry Focus</h3>
+          <p>Health, beauty &amp; personal care. General merchandise. Consumer electronics accessories. Off-price and specialty retail.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-copy">© 2026 TBG Sourcing Inc. All rights reserved. &nbsp;·&nbsp; Brooklyn, NY</p>
+      <nav class="footer-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms</a>
+      </nav>
+      <p class="footer-tagline">A proud builder of Aletheia — <a href="https://getaletheia.ai" target="_blank" rel="noopener">getaletheia.ai</a></p>
+    </div>
+  </footer>
+
+  <script>
+    var toggle = document.getElementById('nav-toggle'), links = document.getElementById('nav-links');
+    if (toggle && links) toggle.addEventListener('click', function() { links.classList.toggle('open'); });
+  </script>
+</body>
+</html>
