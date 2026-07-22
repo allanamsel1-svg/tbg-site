@@ -10,7 +10,7 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root { --bg:#0B0F1A; --bg-card:#0f172a; --accent:#7B2DFF; --accent-hover:#6620e0; --text:#e2e8f0; --muted:#94a3b8; --border:#1e293b; --green:#2ecc71; }
-    body { background: var(--bg); color: var(--text); font-family: 'Poppins', sans-serif; line-height: 1.6; }
+    body { background: var(--bg); color: var(--text); font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 400; line-height: 1.6; }
     a { color: inherit; text-decoration: none; }
 
     .site-nav { position: sticky; top: 0; z-index: 100; background: rgba(11,15,26,.88); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
@@ -28,7 +28,7 @@
     .page-hero { border-bottom: 1px solid var(--border); padding: 72px 2rem 60px; }
     .page-hero-inner { max-width: 1100px; margin: 0 auto; }
     .section-label { font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
-    h1 { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; margin-bottom: 16px; }
+    h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 16px; }
     .hero-sub { font-size: 17px; color: var(--muted); max-width: 620px; line-height: 1.7; }
 
     .content { max-width: 1100px; margin: 0 auto; padding: 72px 2rem; }
@@ -36,12 +36,12 @@
     @media (max-width: 768px) { .content-grid { grid-template-columns: 1fr; gap: 40px; } }
 
     .prose-block { margin-bottom: 48px; }
-    .prose-block h2 { font-size: 18px; font-weight: 700; color: var(--accent); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+    .prose-block h2 { font-size: 1.8rem; font-weight: 600; color: var(--accent); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
     .prose-block h2::before { content: ''; display: block; width: 3px; height: 18px; background: var(--accent); border-radius: 2px; }
     .prose-block p { font-size: 15px; color: var(--muted); line-height: 1.8; }
 
     .sidebar-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 28px; margin-bottom: 20px; }
-    .sidebar-card h3 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: 14px; }
+    .sidebar-card h3 { font-size: 1.2rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: 14px; }
     .sidebar-card p { font-size: 14px; color: var(--text); line-height: 1.6; }
     .sidebar-card a { color: var(--accent); }
     .contact-row { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--muted); margin-bottom: 10px; }
